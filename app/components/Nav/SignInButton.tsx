@@ -2,7 +2,11 @@
 import { signIn } from 'next-auth/react'
 
 const SignInButton = () => {
-	return <div onClick={() => signIn()}>SignInButton</div>
+	return (
+		<button className='btn' onClick={() => signIn('google')}>
+			Login
+		</button>
+	)
 }
 
 export default SignInButton

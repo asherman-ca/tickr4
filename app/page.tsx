@@ -1,9 +1,9 @@
-import SignInButton from './components/SignInButton'
+import { getCoins } from './util/requests'
 
-export default function Home() {
-	return (
-		<main>
-			<SignInButton />
-		</main>
-	)
+export const revalidate = 300
+
+export default async function Home() {
+	const coins = await getCoins()
+
+	return <main>{coins[0].id}</main>
 }

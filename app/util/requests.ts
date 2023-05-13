@@ -29,3 +29,23 @@ export const getUserLike = async (coinId: string) => {
 	)
 	return response.json()
 }
+
+export const addUserLike = async (coinId: string) => {
+	const response = await fetch(
+		`http://localhost:3000/api/like?coinId=${coinId}`,
+		{
+			method: 'POST',
+		}
+	)
+	return response.json()
+}
+
+export const removeUserLike = async (coinId: string) => {
+	const response = await fetch(
+		`http://localhost:3000/api/like?coinId=${coinId}`,
+		{
+			method: 'DELETE',
+		}
+	)
+	return response.json()
+}

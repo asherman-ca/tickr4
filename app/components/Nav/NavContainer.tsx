@@ -16,8 +16,6 @@ const NavContainer = async () => {
 
 	// const session = await getServerSession(authOptions)
 
-	console.log('SESH', session)
-
 	return (
 		<div className='flex flex-col'>
 			<div className='flex justify-between items-center p-4'>

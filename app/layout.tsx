@@ -21,7 +21,7 @@ export default function RootLayout({
 	return (
 		<html lang='en'>
 			<body
-				className={`m-h-screen scrollable flex flex-col ${poppins.className} text-base`}
+				className={`m-h-screen scrollable flex flex-col gap-4 ${poppins.className} text-base`}
 			>
 				{/* @ts-expect-error */}
 				<NavContainer />

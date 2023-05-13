@@ -49,6 +49,7 @@ model User {
   bio           String?
   accounts      Account[]
   sessions      Session[]
+  likes         likes[]
 }
 
 model VerificationToken {
@@ -57,4 +58,12 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+model likes {
+  userId String
+  coinId String
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, coinId])
 }

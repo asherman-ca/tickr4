@@ -1,7 +1,14 @@
-import React from 'react'
+import { getCoin } from '@/app/util/requests'
+import { getServerSession } from 'next-auth'
+import { AuthOptions } from 'next-auth'
+import Content from './Content'
+import { authOptions } from '@/app/api/auth/[...nextauth]/route'
 
-const page = ({ params }: { params: { id: string } }) => {
-	return <div>{params.id}</div>
+const page = async ({ params }: { params: { id: string } }) => {
+	const coin = await getCoin(params.id)
+	const session = await getServerSession(authOptions)
+
+	return <Content coin={coin} session={session} />
 }
 
 export default page

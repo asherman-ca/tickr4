@@ -14,8 +14,11 @@ const Content = ({
 	return (
 		<div className='flex flex-col gap-4'>
 			<h1>{coin.name}</h1>
-			{session && <LikeButton coinId={coin.id} initialLike={initialLike} />}
-			{!session && <LikeIcon />}
+			<LikeButton
+				coinId={coin.id}
+				initialLike={initialLike}
+				session={session}
+			/>
 		</div>
 	)
 }

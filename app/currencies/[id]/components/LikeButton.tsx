@@ -1,40 +1,42 @@
 'use client'
-// import useSWR from 'swr'
 import { addUserLike, removeUserLike } from '@/app/util/requests'
 import { useState } from 'react'
+import { HiOutlineHeart } from 'react-icons/hi'
 
 const LikeButton = ({
 	coinId,
 	initialLike,
+	session,
 }: {
 	coinId: string
 	initialLike: boolean
+	session: any
 }) => {
 	const [like, setLike] = useState<boolean>(initialLike)
-	// const fetchUserLike = async () => {
-	// 	const res = await getUserLike(coinId)
-	// 	return res
-	// }
-	// const { data, error, isLoading } = useSWR('/api/likes', fetchUserLike)
-	// console.log('data', data)
-	// useEffect(() => {
-	// 	const fetchUserLike = async () => {
-	// 		const res = await getUserLike(coinId)
-	// 		console.log('res', res)
-	// 	}
-	// 	fetchUserLike()
-	// }, [])
+	const [loading, setLoading] = useState<boolean>(false)
+
 	const handleClick = async () => {
+		if (!session) return
+		setLoading(true)
 		const initialState = like
 		setLike((prev) => !prev)
 		if (!initialState) {
-			const res = await addUserLike(coinId)
+			await addUserLike(coinId)
 		} else {
-			const res = await removeUserLike(coinId)
+			await removeUserLike(coinId)
 		}
+		setLoading(false)
 	}
 
-	return <button onClick={handleClick}>{like ? 'Liked' : 'Disliked'}</button>
+	return (
+		<button disabled={loading} onClick={handleClick}>
+			{like ? (
+				<HiOutlineHeart className='fill-red-500 text-red-500 h-10 w-10' />
+			) : (
+				<HiOutlineHeart className='text-red-500 h-10 w-10' />
+			)}
+		</button>
+	)
 }
 
 export default LikeButton

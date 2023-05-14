@@ -1,7 +1,7 @@
 'use client'
 import { useState, useEffect, useMemo } from 'react'
 import CoinItem from './CoinItem'
-import { coinType } from '../util/types'
+import { coinTableType, coinType } from '../util/types'
 import { getUserLikes } from '../util/requests'
 import Loader from './Loader'
 
@@ -29,7 +29,7 @@ const CoinTable = ({
 	}, [session])
 	const displayCoins = useMemo(() => {
 		// if (!session) return coins
-		return coins.map((coin: coinType) => {
+		return (coins as coinTableType[]).map((coin: coinTableType) => {
 			const like = likes.find((like: any) => like.coinId === coin.id)
 			if (like) {
 				coin.liked = true

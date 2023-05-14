@@ -1,7 +1,7 @@
-import { coinType } from '@/app/util/types'
+import { coinTableType } from '@/app/util/types'
 import Link from 'next/link'
 
-const CoinItem = ({ coin }: { coin: coinType }) => {
+const CoinItem = ({ coin }: { coin: coinTableType }) => {
 	return (
 		<Link
 			href={`/currencies/${coin.id}`}

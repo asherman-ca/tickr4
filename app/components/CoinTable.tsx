@@ -4,6 +4,7 @@ import CoinItem from './CoinItem'
 import { coinTableType, coinType } from '../util/types'
 import { getUserLikes } from '../util/requests'
 import Loader from './Loader'
+import Spinner from './Spinner'
 
 const CoinTable = ({
 	coins,
@@ -40,7 +41,7 @@ const CoinTable = ({
 		})
 	}, [coins, likes, session])
 
-	if (loading && session) return <Loader />
+	if (loading && session) return <Spinner />
 
 	return (
 		<div>

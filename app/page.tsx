@@ -8,12 +8,13 @@ export const revalidate = 300
 
 export default async function Home() {
 	const session = await getServerSession(authOptions)
-	let coins: coinType[] | [] = []
-	try {
-		coins = await getCoins()
-	} catch (e) {
-		console.log(e)
-	}
+	const coins: coinType[] | [] = await getCoins()
+	// let coins: coinType[] | [] = []
+	// try {
+	// coins = await getCoins()
+	// } catch (e) {
+	// console.log(e)
+	// }
 
 	return <CoinTable coins={coins} session={session} />
 }

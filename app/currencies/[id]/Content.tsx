@@ -4,6 +4,7 @@ import { coinView } from '@/app/util/types'
 import LikeButton from './components/LikeButton'
 import { getUserLike } from '@/app/util/requests'
 import Loader from '@/app/components/Loader'
+import Spinner from '@/app/components/Spinner'
 
 const Content = ({ coin, session }: { coin: coinView; session: any }) => {
 	const [initialLike, setInitialLike] = useState<boolean>(false)
@@ -21,7 +22,7 @@ const Content = ({ coin, session }: { coin: coinView; session: any }) => {
 		fetchLike()
 	}, [session])
 
-	if (session && loading) return <Loader />
+	if (session && loading) return <Spinner />
 
 	return (
 		<div className='flex flex-col gap-4'>

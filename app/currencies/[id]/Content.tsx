@@ -8,13 +8,13 @@ import Spinner from '@/app/components/Spinner'
 
 const Content = ({ coin, session }: { coin: coinView; session: any }) => {
 	const [initialLike, setInitialLike] = useState<boolean>(false)
-	const [loading, setLoading] = useState<boolean>(true)
+	const [loading, setLoading] = useState<boolean>(false)
 	useEffect(() => {
 		if (!session) {
-			setLoading(false)
 			return
 		}
 		const fetchLike = async () => {
+			setLoading(true)
 			const like = await getUserLike(coin.id)
 			setInitialLike(!!like)
 			setLoading(false)

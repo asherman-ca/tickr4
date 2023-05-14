@@ -1,9 +1,16 @@
-import { getCoin } from '@/app/util/requests'
+import { getCoin, getCoins } from '@/app/util/requests'
 import { getServerSession } from 'next-auth'
 import Content from './Content'
 import { authOptions } from '@/app/api/auth/[...nextauth]/route'
 
-export const dynamic = 'force-dynamic'
+// incrementally static regeneration
+export const revalidate = 300
+export async function getStaticParams() {
+	const coins = await getCoins()
+	return coins.map((coin) => ({
+		id: coin.id,
+	}))
+}
 
 const page = async ({ params }: { params: { id: string } }) => {
 	const coin = await getCoin(params.id)

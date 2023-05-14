@@ -14,7 +14,6 @@ const Content = ({ coin, session }: { coin: coinView; session: any }) => {
 		}
 		const fetchLike = async () => {
 			const like = await getUserLike(coin.id)
-			console.log('fetched like', like)
 			setInitialLike(!!like)
 			setLoading(false)
 		}

@@ -2,7 +2,6 @@ import { prisma } from '@/prisma/Prisma'
 import { NextResponse, NextRequest } from 'next/server'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '../auth/[...nextauth]/route'
-import { revalidatePath } from 'next/cache'
 
 export async function GET(request: NextRequest) {
 	const session = await getServerSession(authOptions)

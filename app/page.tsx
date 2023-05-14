@@ -1,31 +1,23 @@
-import { getCoins, getUserLikes } from './util/requests'
-import CoinItem from './components/CoinItem'
+import { getServerSession } from 'next-auth'
+import { authOptions } from '@/app/api/auth/[...nextauth]/route'
+import CoinTable from './components/CoinTable'
+import { getCoins } from './util/requests'
+import { coinType } from '@/app/util/types'
 
-export const dynamic = 'force-dynamic'
-// export const cache = 'no-store'
-// export const revalidate = 0
-// export const dynamic = 'force-static'
-// import { getServerSession } from 'next-auth'
-// import { authOptions } from './api/auth/[...nextauth]/route'
+export const revalidate = 300
 
 export default async function Home() {
-	let coins = []
-	let likes = []
+	const session = await getServerSession(authOptions)
+	let coins: coinType[] | [] = []
 	try {
 		coins = await getCoins()
-		likes = await getUserLikes()
 	} catch (e) {
 		console.log(e)
 	}
 
 	return (
 		<main>
-			{coins?.slice(0, 10).map((coin) => (
-				<CoinItem key={coin.id} coin={coin} />
-			))}
-			{likes?.map((like) => (
-				<div>{like.coinId}</div>
-			))}
+			<CoinTable coins={coins} session={session} />
 		</main>
 	)
 }

@@ -15,9 +15,5 @@ export default async function Home() {
 		console.log(e)
 	}
 
-	return (
-		<main>
-			<CoinTable coins={coins} session={session} />
-		</main>
-	)
+	return <CoinTable coins={coins} session={session} />
 }

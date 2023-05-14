@@ -3,6 +3,7 @@ import { useState, useEffect, useMemo } from 'react'
 import CoinItem from './CoinItem'
 import { coinType } from '../util/types'
 import { getUserLikes } from '../util/requests'
+import Loader from './Loader'
 
 const CoinTable = ({
 	coins,
@@ -39,15 +40,12 @@ const CoinTable = ({
 		})
 	}, [coins, likes, session])
 
-	if (loading) return <div>Loading...</div>
+	if (loading) return <Loader />
 
 	return (
 		<div>
 			{displayCoins?.slice(0, 10).map((coin) => (
 				<CoinItem key={coin.id} coin={coin} />
-			))}
-			{likes.map((like: any) => (
-				<div key={like.id}>{like.coinId}</div>
 			))}
 		</div>
 	)

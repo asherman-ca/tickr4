@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { coinView } from '@/app/util/types'
 import LikeButton from './components/LikeButton'
 import { getUserLike } from '@/app/util/requests'
+import Loader from '@/app/components/Loader'
 
 const Content = ({ coin, session }: { coin: coinView; session: any }) => {
 	const [initialLike, setInitialLike] = useState<boolean>(false)
@@ -20,7 +21,7 @@ const Content = ({ coin, session }: { coin: coinView; session: any }) => {
 		fetchLike()
 	}, [session])
 
-	if (loading) return <div>Loading...</div>
+	if (loading) return <Loader />
 
 	return (
 		<div className='flex flex-col gap-4'>

@@ -20,9 +20,9 @@ export default function RootLayout({
 	children: React.ReactNode
 }) {
 	return (
-		<html lang='en'>
+		<html lang='en' className='min-h-screen flex'>
 			<body
-				className={`m-h-screen scrollable flex flex-col gap-4 ${poppins.className} text-base`}
+				className={`scrollable flex flex-col gap-4 ${poppins.className} text-base flex-1`}
 			>
 				<Wrapper>
 					{/* @ts-expect-error */}

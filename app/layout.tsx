@@ -1,6 +1,7 @@
 import './globals.css'
 import { Poppins } from 'next/font/google'
 import NavContainer from './components/Nav/NavContainer'
+import { Wrapper } from './util/Wrapper'
 
 const poppins = Poppins({
 	weight: ['500', '600', '700'],
@@ -23,9 +24,11 @@ export default function RootLayout({
 			<body
 				className={`m-h-screen scrollable flex flex-col gap-4 ${poppins.className} text-base`}
 			>
-				{/* @ts-expect-error */}
-				<NavContainer />
-				{children}
+				<Wrapper>
+					{/* @ts-expect-error */}
+					<NavContainer />
+					{children}
+				</Wrapper>
 			</body>
 		</html>
 	)

@@ -3,6 +3,7 @@ import { addUserLike, removeUserLike } from '@/app/util/requests'
 import { useState } from 'react'
 import { HiOutlineHeart } from 'react-icons/hi'
 import { revalidatePath } from 'next/cache'
+import { toast } from 'react-hot-toast'
 
 const LikeButton = ({
 	coinId,
@@ -17,7 +18,10 @@ const LikeButton = ({
 	const [loading, setLoading] = useState<boolean>(false)
 
 	const handleClick = async () => {
-		if (!session) return
+		if (!session) {
+			toast.error('You must be logged in to like a coin')
+			return
+		}
 		setLoading(true)
 		const initialState = like
 		setLike((prev) => !prev)

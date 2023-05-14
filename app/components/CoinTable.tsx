@@ -29,8 +29,6 @@ const CoinTable = ({
 		fetchLikes()
 	}, [session])
 	const displayCoins = useMemo(() => {
-		console.log('coins', coins)
-		// if (typeof coins === 'object') return []
 		return (coins as coinTableType[]).map((coin: coinTableType) => {
 			const like = likes.find((like: any) => like.coinId === coin.id)
 			if (like) {

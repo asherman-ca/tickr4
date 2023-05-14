@@ -22,15 +22,18 @@ export const getCoin = async (coinId: string): Promise<coinView> => {
 }
 
 export const getUserLikes = async () => {
-	const response = await fetch('http://localhost:3000/api/likes', {
-		method: 'GET',
-	})
+	const response = await fetch(
+		`${process.env.NEXT_PUBLIC_HOST_URL}/api/likes`,
+		{
+			method: 'GET',
+		}
+	)
 	return response.json()
 }
 
 export const getUserLike = async (coinId: string) => {
 	const response = await fetch(
-		`http://localhost:3000/api/like?coinId=${coinId}`,
+		`${process.env.NEXT_PUBLIC_HOST_URL}/api/like?coinId=${coinId}`,
 		{
 			method: 'GET',
 		}
@@ -40,7 +43,7 @@ export const getUserLike = async (coinId: string) => {
 
 export const addUserLike = async (coinId: string) => {
 	const response = await fetch(
-		`http://localhost:3000/api/like?coinId=${coinId}`,
+		`${process.env.NEXT_PUBLIC_HOST_URL}/api/like?coinId=${coinId}`,
 		{
 			method: 'POST',
 		}
@@ -51,7 +54,7 @@ export const addUserLike = async (coinId: string) => {
 
 export const removeUserLike = async (coinId: string) => {
 	const response = await fetch(
-		`http://localhost:3000/api/like?coinId=${coinId}`,
+		`${process.env.NEXT_PUBLIC_HOST_URL}/api/like?coinId=${coinId}`,
 		{
 			method: 'DELETE',
 		}

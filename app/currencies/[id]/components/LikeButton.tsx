@@ -2,6 +2,7 @@
 import { addUserLike, removeUserLike } from '@/app/util/requests'
 import { useState } from 'react'
 import { HiOutlineHeart } from 'react-icons/hi'
+import { revalidatePath } from 'next/cache'
 
 const LikeButton = ({
 	coinId,

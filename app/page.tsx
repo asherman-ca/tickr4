@@ -1,18 +1,30 @@
-import { getCoins } from './util/requests'
+import { getCoins, getUserLikes } from './util/requests'
 import CoinItem from './components/CoinItem'
 
-// export const revalidate = 300
+export const dynamic = 'force-dynamic'
+// export const cache = 'no-store'
+// export const revalidate = 0
 // export const dynamic = 'force-static'
 // import { getServerSession } from 'next-auth'
 // import { authOptions } from './api/auth/[...nextauth]/route'
 
 export default async function Home() {
-	const coins = await getCoins()
+	let coins = []
+	let likes = []
+	try {
+		coins = await getCoins()
+		likes = await getUserLikes()
+	} catch (e) {
+		console.log(e)
+	}
 
 	return (
 		<main>
-			{coins.slice(0, 10).map((coin) => (
+			{coins?.slice(0, 10).map((coin) => (
 				<CoinItem key={coin.id} coin={coin} />
+			))}
+			{likes?.map((like) => (
+				<div>{like.coinId}</div>
 			))}
 		</main>
 	)

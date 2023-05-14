@@ -1,5 +1,6 @@
 import { coinType, coinView, globalType } from './types'
 import { cache } from 'react'
+import { revalidatePath } from 'next/cache'
 
 export const getCoins = cache(async (): Promise<coinType[]> => {
 	const response = await fetch(
@@ -20,6 +21,13 @@ export const getCoin = async (coinId: string): Promise<coinView> => {
 	return response.json()
 }
 
+export const getUserLikes = async () => {
+	const response = await fetch('http://localhost:3000/api/likes', {
+		method: 'GET',
+	})
+	return response.json()
+}
+
 export const getUserLike = async (coinId: string) => {
 	const response = await fetch(
 		`http://localhost:3000/api/like?coinId=${coinId}`,
@@ -37,6 +45,7 @@ export const addUserLike = async (coinId: string) => {
 			method: 'POST',
 		}
 	)
+
 	return response.json()
 }
 
@@ -47,5 +56,6 @@ export const removeUserLike = async (coinId: string) => {
 			method: 'DELETE',
 		}
 	)
+
 	return response.json()
 }

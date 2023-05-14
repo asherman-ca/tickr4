@@ -175,3 +175,19 @@ export type sortParamType = {
 	type: string
 	direction: string
 }
+
+export type newsType = {
+	author: string
+	content: string
+	description: string
+	publishedAt: string
+	source: {
+		id: string
+		name: string
+	}
+	title: string
+	url: string
+	urlToImage: string
+}
+
+export type coinHistoryType = number[]

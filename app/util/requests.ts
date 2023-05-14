@@ -1,6 +1,12 @@
-import { coinType, coinView, globalType } from './types'
+import { coinType, coinView, globalType, coinHistoryType } from './types'
 import { cache } from 'react'
-import { revalidatePath } from 'next/cache'
+
+// COINS
+
+export const getGlobal = cache(async (): Promise<globalType> => {
+	const response = await fetch('https://api.coingecko.com/api/v3/global')
+	return response.json()
+})
 
 export const getCoins = cache(async (): Promise<coinType[]> => {
 	const response = await fetch(
@@ -9,16 +15,20 @@ export const getCoins = cache(async (): Promise<coinType[]> => {
 	return response.json()
 })
 
-export const getGlobal = cache(async (): Promise<globalType> => {
-	const response = await fetch('https://api.coingecko.com/api/v3/global')
-	return response.json()
-})
-
 export const getCoin = async (coinId: string): Promise<coinView> => {
 	const response = await fetch(
 		`https://api.coingecko.com/api/v3/coins/${coinId}`
 	)
 	return response.json()
+}
+
+export const getCoinHistory = async (
+	coinId: string
+): Promise<coinHistoryType[]> => {
+	const reponse = await fetch(
+		`https://api.coingecko.com/api/v3/coins/${coinId}/market_chart?vs_currency=usd&days=90&interval=daily`
+	)
+	return reponse.json()
 }
 
 export const getUserLikes = async () => {
@@ -57,6 +67,30 @@ export const removeUserLike = async (coinId: string) => {
 		`${process.env.NEXT_PUBLIC_HOST_URL}/api/like?coinId=${coinId}`,
 		{
 			method: 'DELETE',
+		}
+	)
+
+	return response.json()
+}
+
+// NEWS
+
+export const getNews = async (coinId: string) => {
+	const response = await fetch(
+		`https://newsapi.org/v2/everything?q=${coinId}&from=2023-04-14&sortBy=publishedAt&apiKey=${process.env.NEWS_API_KEY}`,
+		{
+			method: 'GET',
+		}
+	)
+
+	return response.json()
+}
+
+export const getNewsHeadlines = async (coinId: string) => {
+	const response = await fetch(
+		`https://newsapi.org/v2/top-headlines?q=${coinId}&sources=techcrunch&apiKey=${process.env.NEWS_API_KEY}`,
+		{
+			method: 'GET',
 		}
 	)
 

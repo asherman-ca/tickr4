@@ -1,8 +1,7 @@
 'use client'
 import { addUserLike, removeUserLike } from '@/app/util/requests'
 import { useState } from 'react'
-import { HiOutlineHeart } from 'react-icons/hi'
-import { revalidatePath } from 'next/cache'
+import { HiOutlineStar } from 'react-icons/hi'
 import { toast } from 'react-hot-toast'
 
 const LikeButton = ({
@@ -36,9 +35,9 @@ const LikeButton = ({
 	return (
 		<button disabled={loading} onClick={handleClick}>
 			{like ? (
-				<HiOutlineHeart className='fill-red-500 text-red-500 h-10 w-10' />
+				<HiOutlineStar className='fill-orange-300 text-orange-300 h-6 w-6' />
 			) : (
-				<HiOutlineHeart className='text-red-500 h-10 w-10' />
+				<HiOutlineStar className='text-orange-300 h-6 w-6' />
 			)}
 		</button>
 	)

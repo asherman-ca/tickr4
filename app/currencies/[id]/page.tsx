@@ -1,4 +1,4 @@
-import { getCoin, getCoins } from '@/app/util/requests'
+import { getCoin, getCoinHistory, getCoins, getNews } from '@/app/util/requests'
 import { getServerSession } from 'next-auth'
 import Content from './Content'
 import { authOptions } from '@/app/api/auth/[...nextauth]/route'
@@ -13,10 +13,20 @@ export async function getStaticParams() {
 }
 
 const page = async ({ params }: { params: { id: string } }) => {
-	const coin = await getCoin(params.id)
-	const session = await getServerSession(authOptions)
+	const [session, coin, history, news] = await Promise.all([
+		getServerSession(authOptions),
+		getCoin(params.id),
+		getCoinHistory(params.id),
+		getNews(params.id),
+	])
+	// const coin = await getCoin(params.id)
+	// const session = await getServerSession(authOptions)
+	// const news = await getNews(params.id)
+	// const history = await getCoinHistory(params.id)
 
-	return <Content coin={coin} session={session} />
+	// console.log('news', news)
+
+	return <Content coin={coin} session={session} news={news} history={history} />
 }
 
 export default page

@@ -1,20 +1,32 @@
 'use client'
 import { useState, useEffect } from 'react'
-import { coinView } from '@/app/util/types'
+import { coinView, coinHistoryType } from '@/app/util/types'
 import LikeButton from './components/LikeButton'
 import { getUserLike } from '@/app/util/requests'
-import Loader from '@/app/components/Loader'
 import Spinner from '@/app/components/Spinner'
+import LeftPanel from './components/LeftPanel'
+import CenterPanel from './components/CenterPanel'
+import RightPanel from './components/RightPanel'
 
-const Content = ({ coin, session }: { coin: coinView; session: any }) => {
+const Content = ({
+	coin,
+	session,
+	news,
+	history,
+}: {
+	coin: coinView
+	session: any
+	news: any
+	history: coinHistoryType[]
+}) => {
 	const [initialLike, setInitialLike] = useState<boolean>(false)
-	const [loading, setLoading] = useState<boolean>(false)
+	const [loading, setLoading] = useState<boolean>(true)
 	useEffect(() => {
 		if (!session) {
+			setLoading(false)
 			return
 		}
 		const fetchLike = async () => {
-			setLoading(true)
 			const like = await getUserLike(coin.id)
 			setInitialLike(!!like)
 			setLoading(false)
@@ -25,13 +37,10 @@ const Content = ({ coin, session }: { coin: coinView; session: any }) => {
 	if (session && loading) return <Spinner />
 
 	return (
-		<div className='flex flex-col gap-4'>
-			<h1>{coin.name}</h1>
-			<LikeButton
-				coinId={coin.id}
-				initialLike={initialLike}
-				session={session}
-			/>
+		<div className='flex'>
+			<LeftPanel coin={coin} initialLike={initialLike} session={session} />
+			<CenterPanel news={news} coin={coin} history={history} />
+			<RightPanel />
 		</div>
 	)
 }

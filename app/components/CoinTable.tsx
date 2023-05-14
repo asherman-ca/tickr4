@@ -3,7 +3,6 @@ import { useState, useEffect, useMemo, useCallback } from 'react'
 import CoinItem from './CoinItem'
 import { coinTableType, coinType } from '../util/types'
 import { getUserLikes } from '../util/requests'
-import Loader from './Loader'
 import Spinner from './Spinner'
 
 const CoinTable = ({
@@ -14,15 +13,15 @@ const CoinTable = ({
 	session: any
 }) => {
 	const [likes, setLikes] = useState<any>([])
-	const [loading, setLoading] = useState<boolean>(false)
+	const [loading, setLoading] = useState<boolean>(true)
 
 	useEffect(() => {
 		if (!session) {
-			// setLoading(false)
+			setLoading(false)
 			return
 		}
 		const fetchLikes = async () => {
-			setLoading(true)
+			// setLoading(true)
 			const likes = await getUserLikes()
 			setLikes(likes)
 			setLoading(false)

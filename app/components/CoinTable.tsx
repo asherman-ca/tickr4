@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useEffect, useMemo, useCallback } from 'react'
 import CoinItem from './CoinItem'
 import { coinTableType, coinType } from '../util/types'
 import { getUserLikes } from '../util/requests'
@@ -13,10 +13,11 @@ const CoinTable = ({
 	session: any
 }) => {
 	const [likes, setLikes] = useState<any>([])
-	const [loading, setLoading] = useState<boolean>(true)
+	const [loading, setLoading] = useState<boolean>(false)
+
 	useEffect(() => {
 		if (!session) {
-			setLoading(false)
+			// setLoading(false)
 			return
 		}
 		const fetchLikes = async () => {
@@ -28,8 +29,9 @@ const CoinTable = ({
 		fetchLikes()
 	}, [session])
 	const displayCoins = useMemo(() => {
-		// if (!session) return coins
-		return (coins as coinTableType[])?.map((coin: coinTableType) => {
+		console.log('coins', coins)
+		// if (typeof coins === 'object') return []
+		return (coins as coinTableType[]).map((coin: coinTableType) => {
 			const like = likes.find((like: any) => like.coinId === coin.id)
 			if (like) {
 				coin.liked = true

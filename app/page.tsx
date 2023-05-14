@@ -14,6 +14,7 @@ export default async function Home() {
 	} catch (e) {
 		console.log(e)
 	}
+	if (typeof coins === 'object') coins = []
 
 	return <CoinTable coins={coins} session={session} />
 }

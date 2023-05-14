@@ -1,4 +1,4 @@
-import { getCoin, getUserLike } from '@/app/util/requests'
+import { getCoin } from '@/app/util/requests'
 import { getServerSession } from 'next-auth'
 import Content from './Content'
 import { authOptions } from '@/app/api/auth/[...nextauth]/route'

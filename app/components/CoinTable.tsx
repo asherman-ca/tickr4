@@ -29,7 +29,7 @@ const CoinTable = ({
 	}, [session])
 	const displayCoins = useMemo(() => {
 		// if (!session) return coins
-		return (coins as coinTableType[]).map((coin: coinTableType) => {
+		return (coins as coinTableType[])?.map((coin: coinTableType) => {
 			const like = likes.find((like: any) => like.coinId === coin.id)
 			if (like) {
 				coin.liked = true
@@ -40,7 +40,7 @@ const CoinTable = ({
 		})
 	}, [coins, likes, session])
 
-	if (loading) return <Loader />
+	if (loading && session) return <Loader />
 
 	return (
 		<div>

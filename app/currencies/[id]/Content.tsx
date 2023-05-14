@@ -21,7 +21,7 @@ const Content = ({ coin, session }: { coin: coinView; session: any }) => {
 		fetchLike()
 	}, [session])
 
-	if (loading) return <Loader />
+	if (session && loading) return <Loader />
 
 	return (
 		<div className='flex flex-col gap-4'>

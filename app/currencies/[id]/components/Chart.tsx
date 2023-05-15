@@ -1,4 +1,3 @@
-import { numParseTwoDecimal } from '@/app/util/formaters'
 import { coinHistoryType } from '@/app/util/types'
 import {
 	AreaChart,
@@ -28,11 +27,14 @@ const Chart = ({ history }: { history: coinHistoryType[] }) => {
 		price: item[1] > 1 ? item[1].toFixed(2) : item[1],
 	}))
 
+	console.log('hits')
+	console.log('history', history)
+
 	return (
 		<ResponsiveContainer
-			// width={'100%'}
-			// height={'100%'}
-			className='max-h-96 text-sm px-8 max-w-[90%]'
+			className='text-sm px-8'
+			width='90%'
+			height={400}
 			id='chart'
 		>
 			<AreaChart

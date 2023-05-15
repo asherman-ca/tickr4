@@ -11,8 +11,8 @@ type Props = {
 
 const CenterPanel = ({ coin, news, history }: Props) => {
 	return (
-		<div className='hidden md:flex md:basis-2/3 lg:basis-1/2 flex-col gap-4 py-6 text-base border-l border-gray-200'>
-			<div className='flex gap-4 px-10 text-base border-b border-gray-200'>
+		<div className='hidden md:flex md:basis-2/3 lg:basis-1/2 flex-col gap-4 py-4 text-base border-l border-gray-200'>
+			<div className='flex gap-4 pt-2 px-10 text-base border-b border-gray-200 sticky top-0 left-0 bg-white z-10'>
 				<a href='#chart' className='pb-2'>
 					Chart
 				</a>
@@ -33,7 +33,17 @@ const CenterPanel = ({ coin, news, history }: Props) => {
 
 			<Markets coin={coin} />
 
-			{/* <div id='about'></div> */}
+			<div id='about' className='px-8 flex gap-4 flex-col'>
+				<h2 className='text-4xl'>About {coin.name}</h2>
+				<div className='flex flex-col gap-2'>
+					<span>
+						What is {coin.name} ({coin.symbol.toUpperCase()})?
+					</span>
+					<p className='text-gray-500'>
+						{coin.description.en.replace(/<\/?a[^>]*>/g, '')}
+					</p>
+				</div>
+			</div>
 		</div>
 	)
 }

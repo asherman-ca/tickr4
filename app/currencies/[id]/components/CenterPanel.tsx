@@ -27,9 +27,9 @@ const CenterPanel = ({ coin, news, history }: Props) => {
 				</a>
 			</div>
 
-			<Chart history={history} />
+			{/* <Chart history={history} /> */}
 
-			<News news={news} />
+			<News news={news} title={coin.name} />
 
 			<Markets coin={coin} />
 

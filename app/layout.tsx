@@ -22,7 +22,7 @@ export default function RootLayout({
 	return (
 		<html lang='en' className='min-h-screen flex'>
 			<body
-				className={`scrollable flex flex-col gap-4 ${poppins.className} text-base flex-1`}
+				className={`scrollable flex flex-col ${poppins.className} text-base flex-1`}
 			>
 				<Wrapper>
 					{/* @ts-expect-error */}

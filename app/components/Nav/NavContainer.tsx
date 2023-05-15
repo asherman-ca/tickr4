@@ -17,7 +17,7 @@ const NavContainer = async () => {
 	// const session = await getServerSession(authOptions)
 
 	return (
-		<div className='flex flex-col'>
+		<div className='flex flex-col border-b border-gray-200'>
 			<div className='flex justify-between items-center p-4'>
 				<Link href={'/'} className='text-4xl'>
 					Tickr

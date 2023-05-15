@@ -29,7 +29,7 @@ type Props = {
 
 const LeftPanel = ({ coin, initialLike, session }: Props) => {
 	return (
-		<div className='flex flex-col md:basis-1/3 lg:basis-1/4 gap-4 p-6 border-r border-gray-200 flex-1'>
+		<div className='flex flex-col md:basis-1/3 lg:basis-1/4 gap-4 p-6 flex-1'>
 			<div className='flex justify-between'>
 				<div className='flex gap-1 items-center'>
 					<Image

@@ -30,18 +30,17 @@ const Chart = ({ history }: { history: coinHistoryType[] }) => {
 
 	return (
 		<ResponsiveContainer
-			width='100%'
-			height='100%'
-			className='max-h-96 text-sm'
+			// width={'100%'}
+			// height={'100%'}
+			className='max-h-96 text-sm px-8 max-w-[90%]'
+			id='chart'
 		>
 			<AreaChart
-				// width={500}
-				// height={200}
 				data={data}
 				margin={{
 					top: 10,
 					right: 0,
-					left: 10,
+					left: 0,
 					bottom: 0,
 				}}
 			>
@@ -49,7 +48,13 @@ const Chart = ({ history }: { history: coinHistoryType[] }) => {
 				<XAxis dataKey='date' />
 				<YAxis label={{ value: 'USD', angle: -90, position: 'insideLeft' }} />
 				<Tooltip />
-				<Area type='monotone' dataKey='price' stroke='#16C784' fill='#ECF9F5' />
+				<Area
+					type='monotone'
+					dataKey='price'
+					stroke='#16C784'
+					fill='#ECF9F5'
+					name='$USD'
+				/>
 			</AreaChart>
 		</ResponsiveContainer>
 	)

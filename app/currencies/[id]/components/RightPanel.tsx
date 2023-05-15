@@ -1,7 +1,7 @@
 import React from 'react'
 
 const RightPanel = () => {
-	return <div className='flex basis-1/5'>RightPanel</div>
+	return <div className='hidden lg:flex lg:basis-1/4'>RightPanel</div>
 }
 
 export default RightPanel

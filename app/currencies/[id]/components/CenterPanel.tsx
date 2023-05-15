@@ -7,7 +7,9 @@ type Props = {
 }
 
 const CenterPanel = ({ coin, news, history }: Props) => {
-	return <div className='flex basis-3/5'>CenterPanel</div>
+	return (
+		<div className='hidden md:flex md:basis-2/3 lg:basis-2/4'>CenterPanel</div>
+	)
 }
 
 export default CenterPanel

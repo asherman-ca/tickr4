@@ -3,6 +3,10 @@ import { getServerSession } from 'next-auth'
 import Content from './Content'
 import { authOptions } from '@/app/api/auth/[...nextauth]/route'
 
+import bitcoin from '@/testdata/bitcoin.json'
+import { coinHistory } from '@/testdata/coinHistory'
+import everything from '@/testdata/everything.json'
+
 // incrementally static regeneration
 export const revalidate = 300
 export async function getStaticParams() {
@@ -13,24 +17,17 @@ export async function getStaticParams() {
 }
 
 const page = async ({ params }: { params: { id: string } }) => {
-	const [session, coin, history, news] = await Promise.all([
-		getServerSession(authOptions),
-		getCoin(params.id),
-		getCoinHistory(params.id),
-		getNews(params.id),
-	])
-	// const coin = await getCoin(params.id)
-	// const session = await getServerSession(authOptions)
-	// const news = await getNews(params.id)
-	// const history = await getCoinHistory(params.id)
+	// const [session, coin, history, news] = await Promise.all([
+	// 	getServerSession(authOptions),
+	// 	getCoin(params.id),
+	// 	getCoinHistory(params.id),
+	// 	getNews(params.id),
+	// ])
 
-	console.log('COIN', coin)
-
-	const fakeCoin = {
-		name: 'Ethereum',
-		symbol: 'ETH',
-		market_data: { current_price: { usd: 1000 } },
-	}
+	const session = await getServerSession(authOptions)
+	const coin = JSON.parse(JSON.stringify(bitcoin))
+	const history = coinHistory.prices
+	const news = JSON.parse(JSON.stringify(everything))
 
 	return <Content coin={coin} session={session} news={news} history={history} />
 }

@@ -104,6 +104,9 @@ export type coinView = {
 		price_change_percentage_7d_in_currency: {
 			usd: number
 		}
+		total_supply: number
+		circulating_supply: number
+		last_updated: string
 	}
 	tickers: marketType[]
 }

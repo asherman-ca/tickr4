@@ -42,3 +42,6 @@ flaticon
 lottie animations
 tailwind
 react-icons
+
+Data Viz:
+ReChart

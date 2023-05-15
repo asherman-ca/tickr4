@@ -26,7 +26,7 @@ export const getCoinHistory = async (
 	coinId: string
 ): Promise<coinHistoryType[]> => {
 	const reponse = await fetch(
-		`https://api.coingecko.com/api/v3/coins/${coinId}/market_chart?vs_currency=usd&days=360`
+		`https://api.coingecko.com/api/v3/coins/${coinId}/market_chart?vs_currency=usd&days=360&interval=daily`
 	)
 	return reponse.json()
 }

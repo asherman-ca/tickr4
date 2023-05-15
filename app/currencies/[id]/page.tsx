@@ -24,7 +24,13 @@ const page = async ({ params }: { params: { id: string } }) => {
 	// const news = await getNews(params.id)
 	// const history = await getCoinHistory(params.id)
 
-	// console.log('news', news)
+	console.log('COIN', coin)
+
+	const fakeCoin = {
+		name: 'Ethereum',
+		symbol: 'ETH',
+		market_data: { current_price: { usd: 1000 } },
+	}
 
 	return <Content coin={coin} session={session} news={news} history={history} />
 }

@@ -33,11 +33,15 @@ const LikeButton = ({
 	}
 
 	return (
-		<button disabled={loading} onClick={handleClick}>
+		<button
+			disabled={loading}
+			onClick={handleClick}
+			className='bg-gray-200 rounded-md p-2'
+		>
 			{like ? (
-				<HiOutlineStar className='fill-orange-300 text-orange-300 h-6 w-6' />
+				<HiOutlineStar className='fill-orange-300 text-orange-300 h-4 w-4' />
 			) : (
-				<HiOutlineStar className='text-orange-300 h-6 w-6' />
+				<HiOutlineStar className='text-black h-4 w-4' />
 			)}
 		</button>
 	)

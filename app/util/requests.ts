@@ -26,7 +26,7 @@ export const getCoinHistory = async (
 	coinId: string
 ): Promise<coinHistoryType[]> => {
 	const reponse = await fetch(
-		`https://api.coingecko.com/api/v3/coins/${coinId}/market_chart?vs_currency=usd&days=90&interval=daily`
+		`https://api.coingecko.com/api/v3/coins/${coinId}/market_chart?vs_currency=usd&days=360`
 	)
 	return reponse.json()
 }
@@ -77,7 +77,7 @@ export const removeUserLike = async (coinId: string) => {
 
 export const getNews = async (coinId: string) => {
 	const response = await fetch(
-		`https://newsapi.org/v2/everything?q=${coinId}&from=2023-04-14&sortBy=publishedAt&apiKey=${process.env.NEWS_API_KEY}`,
+		`https://newsapi.org/v2/everything?q=${coinId}&sortBy=publishedAt&apiKey=${process.env.NEWS_API_KEY}`,
 		{
 			method: 'GET',
 		}

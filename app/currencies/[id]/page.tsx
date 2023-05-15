@@ -17,17 +17,17 @@ export async function getStaticParams() {
 }
 
 const page = async ({ params }: { params: { id: string } }) => {
-	const [session, coin, history, news] = await Promise.all([
-		getServerSession(authOptions),
-		getCoin(params.id),
-		getCoinHistory(params.id),
-		getNews(params.id),
-	])
+	// const [session, coin, history, news] = await Promise.all([
+	// 	getServerSession(authOptions),
+	// 	getCoin(params.id),
+	// 	getCoinHistory(params.id),
+	// 	getNews(params.id),
+	// ])
 
-	// const session = await getServerSession(authOptions)
-	// const coin = JSON.parse(JSON.stringify(bitcoin))
-	// const history = coinHistory.prices
-	// const news = JSON.parse(JSON.stringify(everything))
+	const session = await getServerSession(authOptions)
+	const coin = JSON.parse(JSON.stringify(bitcoin))
+	const history = coinHistory.prices
+	const news = JSON.parse(JSON.stringify(everything))
 
 	return <Content coin={coin} session={session} news={news} history={history} />
 }

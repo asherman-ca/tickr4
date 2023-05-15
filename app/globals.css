@@ -5,3 +5,15 @@
 .btn {
 	@apply px-3 py-1 border border-blue-500 rounded-md text-blue-500 text-sm;
 }
+
+.btmCarrot::before {
+	content: '';
+	position: absolute;
+	top: 95%;
+	left: 50%;
+	transform: translateX(-50%);
+	border-top: 15px solid white;
+	border-bottom: 15px solid transparent;
+	border-left: 15px solid transparent;
+	border-right: 15px solid transparent;
+}

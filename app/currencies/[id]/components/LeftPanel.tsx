@@ -250,7 +250,7 @@ const LeftPanel = ({ coin, initialLike, session }: Props) => {
 						Chain explorers
 						<HiChevronUp className='w-4 h-4' />
 						<div className='group-hover:flex absolute hidden bottom-[100%] left-0 w-full'>
-							<div className='bg-white shadow-md mb-2 p-4 rounded-md flex flex-col gap-2 min-w-full'>
+							<div className='bg-white shadow-md mb-4 p-4 rounded-md flex flex-col gap-2 min-w-full btmCarrot relative'>
 								{coin.links.blockchain_site
 									.filter((site) => site.length > 0)
 									.map((site, index) => (

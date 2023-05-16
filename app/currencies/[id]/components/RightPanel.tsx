@@ -5,6 +5,7 @@ import { coinView } from '@/app/util/types'
 import PostForm from './PostForm'
 import { getPosts } from '@/app/util/requests'
 import TimeAgo from 'react-timeago'
+import { motion } from 'framer-motion'
 
 const RightPanel = ({ coin }: { coin: coinView }) => {
 	const [posts, setPosts] = useState<any[]>([])
@@ -49,7 +50,10 @@ const RightPanel = ({ coin }: { coin: coinView }) => {
 				{loading && '...loading'}
 				{!loading &&
 					posts.map((post, idx) => (
-						<div
+						<motion.div
+							layout
+							initial={{ opacity: 0 }}
+							animate={{ opacity: 1 }}
 							key={`post ${idx}`}
 							className='flex flex-col gap-4 border-b border-gray-200 py-4'
 						>
@@ -75,7 +79,7 @@ const RightPanel = ({ coin }: { coin: coinView }) => {
 								/>
 							</div>
 							<div className='text-sm'>{post.content}</div>
-						</div>
+						</motion.div>
 					))}
 			</div>
 			<PostForm setPosts={setPosts} />

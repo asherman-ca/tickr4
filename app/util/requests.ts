@@ -99,9 +99,9 @@ export const getNewsHeadlines = async (coinId: string) => {
 
 // POSTS
 
-export const getPosts = async () => {
+export const getPosts = async (coinId: string) => {
 	const response = await fetch(
-		`${process.env.NEXT_PUBLIC_HOST_URL}/api/posts`,
+		`${process.env.NEXT_PUBLIC_HOST_URL}/api/posts?coinId=${coinId}`,
 		{
 			method: 'GET',
 		}
@@ -110,10 +110,14 @@ export const getPosts = async () => {
 	return response.json()
 }
 
-export const addPost = async (content: string, coinId: string) => {
+export const addPost = async (
+	content: string,
+	coinId: string,
+	bullish: boolean
+) => {
 	const response = await fetch(`${process.env.NEXT_PUBLIC_HOST_URL}/api/post`, {
 		method: 'POST',
-		body: JSON.stringify({ content, coinId }),
+		body: JSON.stringify({ content, coinId, bullish }),
 	})
 
 	return response.json()

@@ -1,13 +1,22 @@
+import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { HiPlusSm, HiBadgeCheck } from 'react-icons/hi'
-import { addPost } from '@/app/util/requests'
 import { coinView } from '@/app/util/types'
+import PostForm from './PostForm'
+import { getPosts } from '@/app/util/requests'
 
 const RightPanel = ({ coin }: { coin: coinView }) => {
-	const submitPost = async () => {
-		const res = await addPost('words', 'bitcoin')
-		console.log(res)
-	}
+	const [posts, setPosts] = useState<any[]>([])
+	const [loading, setLoading] = useState<boolean>(true)
+
+	useEffect(() => {
+		const fetchPosts = async () => {
+			const res = await getPosts(coin.id)
+			setPosts(res)
+			setLoading(false)
+		}
+		fetchPosts()
+	}, [])
 
 	return (
 		<div className='hidden lg:flex lg:basis-1/4 border-l border-gray-200 py-6 flex-col gap-6'>
@@ -35,11 +44,14 @@ const RightPanel = ({ coin }: { coin: coinView }) => {
 					</button>
 				</div>
 			</div>
-			<div className='px-6 overflow-y-auto'>posts</div>
-			<div className='mt-auto px-6 pt-6 border-t border-gray-200'>
-				post form
-				<button onClick={submitPost}>Create post</button>
+			<div className='px-6 overflow-y-auto'>
+				{loading && '...loading'}
+				{!loading &&
+					posts.map((post, idx) => (
+						<div key={`post ${idx}`}>{post.content}</div>
+					))}
 			</div>
+			<PostForm />
 		</div>
 	)
 }

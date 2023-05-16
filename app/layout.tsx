@@ -1,6 +1,6 @@
 import './globals.css'
 import { Poppins } from 'next/font/google'
-import NavContainer from './components/Nav/NavContainer'
+import Nav from './components/Nav/Nav'
 import { Wrapper } from './util/Wrapper'
 
 const poppins = Poppins({
@@ -26,7 +26,7 @@ export default function RootLayout({
 			>
 				<Wrapper>
 					{/* @ts-expect-error */}
-					<NavContainer />
+					<Nav />
 					{children}
 				</Wrapper>
 			</body>

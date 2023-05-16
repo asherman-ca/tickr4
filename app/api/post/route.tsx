@@ -21,9 +21,10 @@ export async function DELETE(request: NextRequest) {
 	const session: any = await getServerSession(authOptions)
 	const postId = await request.nextUrl.searchParams.get('postId')
 
-	const userPost = await prisma.posts.delete({
+	const userPost = await prisma.posts.deleteMany({
 		where: {
 			id: postId!,
+			userId: session?.user?.id!,
 		},
 	})
 

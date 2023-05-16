@@ -29,7 +29,7 @@ const page = async ({ params }: { params: { id: string } }) => {
 	const history = coinHistory.prices
 	const news = JSON.parse(JSON.stringify(everything))
 		.articles.slice(0, 5)
-		.sort((a, b) => {
+		.sort((a: any, b: any) => {
 			return (
 				new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
 			)

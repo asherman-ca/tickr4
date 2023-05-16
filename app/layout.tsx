@@ -20,7 +20,7 @@ export default function RootLayout({
 	children: React.ReactNode
 }) {
 	return (
-		<html lang='en' className='min-h-screen flex'>
+		<html lang='en' className='h-screen flex'>
 			<body
 				className={`scrollable flex flex-col ${poppins.className} text-base w-full`}
 			>

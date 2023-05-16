@@ -37,7 +37,7 @@ const Content = ({
 	if (session && loading) return <Spinner />
 
 	return (
-		<div className='flex'>
+		<div className='flex h-full overflow-y-hidden'>
 			<LeftPanel coin={coin} initialLike={initialLike} session={session} />
 			<CenterPanel news={news} coin={coin} history={history} />
 			<RightPanel />

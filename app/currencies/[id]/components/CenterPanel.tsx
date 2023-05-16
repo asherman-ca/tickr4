@@ -24,11 +24,9 @@ const CenterPanel = ({ coin, news, history }: Props) => {
 			<div className='flex gap-4 py-6 px-10 text-base border-b border-gray-200 sticky top-0 left-0 bg-white z-10'>
 				<button onClick={() => handleNav('news')}>News</button>
 				<button onClick={() => handleNav('markets')}>Markets</button>
-				<button onClick={() => handleNav('chart')}>Chart</button>
 				<button onClick={() => handleNav('about')}>About</button>
+				<button onClick={() => handleNav('chart')}>Chart</button>
 			</div>
-
-			{/* <Chart history={history} /> */}
 
 			<News news={news} title={coin.name} />
 
@@ -45,6 +43,8 @@ const CenterPanel = ({ coin, news, history }: Props) => {
 					</p>
 				</div>
 			</div>
+
+			<Chart history={history} />
 		</div>
 	)
 }

@@ -1,8 +1,14 @@
-import { coinView } from '@/app/util/types'
 import Image from 'next/image'
 import { HiPlusSm, HiBadgeCheck } from 'react-icons/hi'
+import { addPost } from '@/app/util/requests'
+import { coinView } from '@/app/util/types'
 
 const RightPanel = ({ coin }: { coin: coinView }) => {
+	const submitPost = async () => {
+		const res = await addPost('words', 'bitcoin')
+		console.log(res)
+	}
+
 	return (
 		<div className='hidden lg:flex lg:basis-1/4 border-l border-gray-200 py-6 flex-col gap-6'>
 			<div className='flex flex-col gap-6 px-6 pb-6 border-b border-gray-200'>
@@ -32,6 +38,7 @@ const RightPanel = ({ coin }: { coin: coinView }) => {
 			<div className='px-6 overflow-y-auto'>posts</div>
 			<div className='mt-auto px-6 pt-6 border-t border-gray-200'>
 				post form
+				<button onClick={submitPost}>Create post</button>
 			</div>
 		</div>
 	)

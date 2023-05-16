@@ -4,7 +4,7 @@ import { getServerSession } from 'next-auth'
 import { authOptions } from '../auth/[...nextauth]/route'
 
 export async function GET(request: NextRequest) {
-	const session = await getServerSession(authOptions)
+	const session: any = await getServerSession(authOptions)
 	const coinId = await request.nextUrl.searchParams.get('coinId')
 
 	const userLike = await prisma.likes.findFirst({
@@ -18,7 +18,7 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
-	const session = await getServerSession(authOptions)
+	const session: any = await getServerSession(authOptions)
 	const coinId = await request.nextUrl.searchParams.get('coinId')
 
 	const userLike = await prisma.likes.create({
@@ -32,7 +32,7 @@ export async function POST(request: NextRequest) {
 }
 
 export async function DELETE(request: NextRequest) {
-	const session = await getServerSession(authOptions)
+	const session: any = await getServerSession(authOptions)
 	const coinId = await request.nextUrl.searchParams.get('coinId')
 
 	const userLike = await prisma.likes.delete({

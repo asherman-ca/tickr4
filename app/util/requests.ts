@@ -100,14 +100,18 @@ export const getNewsHeadlines = async (coinId: string) => {
 // POSTS
 
 export const getPosts = async (coinId: string) => {
-	const response = await fetch(
-		`${process.env.NEXT_PUBLIC_HOST_URL}/api/posts?coinId=${coinId}`,
-		{
-			method: 'GET',
-		}
-	)
+	try {
+		const response = await fetch(
+			`${process.env.NEXT_PUBLIC_HOST_URL}/api/posts?coinId=${coinId}`,
+			{
+				method: 'GET',
+			}
+		)
 
-	return response.json()
+		return response.json()
+	} catch (error) {
+		return []
+	}
 }
 
 export const addPost = async (

@@ -13,6 +13,14 @@ export async function POST(request: NextRequest) {
 			coinId,
 			userId: session?.user?.id!,
 		},
+		include: {
+			user: {
+				select: {
+					name: true,
+					image: true,
+				},
+			},
+		},
 	})
 
 	return NextResponse.json(userPost)

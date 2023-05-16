@@ -16,6 +16,9 @@ export async function GET(request: NextRequest) {
 				},
 			},
 		},
+		orderBy: {
+			createdAt: 'desc',
+		},
 	})
 
 	return NextResponse.json(coinPosts)

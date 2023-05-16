@@ -78,7 +78,7 @@ const RightPanel = ({ coin }: { coin: coinView }) => {
 						</div>
 					))}
 			</div>
-			<PostForm />
+			<PostForm setPosts={setPosts} />
 		</div>
 	)
 }

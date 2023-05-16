@@ -26,8 +26,8 @@ const page = async ({ params }: { params: { id: string } }) => {
 
 	const session = await getServerSession(authOptions)
 	const coin = JSON.parse(JSON.stringify(bitcoin))
-	const history = coinHistory.prices
-	const news = JSON.parse(JSON.stringify(everything))
+	const history = coinHistory
+	const parsedNews = JSON.parse(JSON.stringify(everything))
 		.articles.slice(0, 5)
 		.sort((a: any, b: any) => {
 			return (
@@ -35,7 +35,22 @@ const page = async ({ params }: { params: { id: string } }) => {
 			)
 		})
 
-	return <Content coin={coin} session={session} news={news} history={history} />
+	// const parsedNews = JSON.parse(JSON.stringify(news))
+	// 	.articles.slice(0, 5)
+	// 	.sort((a: any, b: any) => {
+	// 		return (
+	// 			new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
+	// 		)
+	// 	})
+
+	return (
+		<Content
+			coin={coin}
+			session={session}
+			news={parsedNews}
+			history={history.prices}
+		/>
+	)
 }
 
 export default page

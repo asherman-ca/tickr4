@@ -20,12 +20,12 @@ const handleNav = (elementId: string) => {
 
 const CenterPanel = ({ coin, news, history }: Props) => {
 	return (
-		<div className='hidden md:flex md:basis-2/3 lg:basis-1/2 flex-col gap-4 pb-4 text-base border-l border-gray-200 overflow-auto scrollbar-hide'>
-			<div className='flex gap-4 pt-6 px-10 text-base border-b border-gray-200 sticky top-0 left-0 bg-white z-10'>
-				<button onClick={() => handleNav('chart')}>Chart</button>
+		<div className='hidden md:flex md:basis-2/3 lg:basis-1/2 flex-col gap-6 pb-4 text-base border-l border-gray-200 overflow-auto scrollbar-hide'>
+			<div className='flex gap-4 py-6 px-10 text-base border-b border-gray-200 sticky top-0 left-0 bg-white z-10'>
 				<button onClick={() => handleNav('news')}>News</button>
-				<button onClick={() => handleNav('about')}>About</button>
 				<button onClick={() => handleNav('markets')}>Markets</button>
+				<button onClick={() => handleNav('chart')}>Chart</button>
+				<button onClick={() => handleNav('about')}>About</button>
 			</div>
 
 			{/* <Chart history={history} /> */}
@@ -35,7 +35,7 @@ const CenterPanel = ({ coin, news, history }: Props) => {
 			<Markets coin={coin} />
 
 			<div id='about' className='px-8 flex gap-4 flex-col'>
-				<h2 className='text-4xl'>About {coin.name}</h2>
+				<h2 className='text-4xl font-semibold'>About {coin.name}</h2>
 				<div className='flex flex-col gap-2'>
 					<span>
 						What is {coin.name} ({coin.symbol.toUpperCase()})?

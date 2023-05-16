@@ -4,7 +4,7 @@ import NavContainer from './components/Nav/NavContainer'
 import { Wrapper } from './util/Wrapper'
 
 const poppins = Poppins({
-	weight: ['500', '600', '700'],
+	weight: ['400', '500', '600', '700'],
 	subsets: ['latin'],
 	variable: '--font-poppins',
 })

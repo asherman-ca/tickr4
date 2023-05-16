@@ -7,7 +7,7 @@ const News = ({ news, title }: { news: newsType[]; title: string }) => {
 	console.log('news', news)
 	return (
 		<div id='news' className='px-8 flex flex-col gap-6'>
-			<h2 className='text-4xl'>{title} news</h2>
+			<h2 className='text-4xl font-semibold'>{title} news</h2>
 			<div className='flex gap-6 flex-col'>
 				{news.map((item, idx) => (
 					<div key={`news ${idx}`} className='flex flex-col gap-6'>

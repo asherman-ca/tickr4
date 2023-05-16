@@ -9,22 +9,23 @@ type Props = {
 	history: coinHistoryType[]
 }
 
+const handleNav = (elementId: string) => {
+	const element = document.getElementById(elementId)!
+	element.scrollIntoView({
+		behavior: 'smooth',
+		block: 'start',
+		inline: 'nearest',
+	})
+}
+
 const CenterPanel = ({ coin, news, history }: Props) => {
 	return (
 		<div className='hidden md:flex md:basis-2/3 lg:basis-1/2 flex-col gap-4 pb-4 text-base border-l border-gray-200 overflow-auto scrollbar-hide'>
 			<div className='flex gap-4 pt-6 px-10 text-base border-b border-gray-200 sticky top-0 left-0 bg-white z-10'>
-				<a href='#chart' className='pb-4'>
-					Chart
-				</a>
-				<a href='#news' className='pb-4'>
-					News
-				</a>
-				<a href='#about' className='pb-4'>
-					About
-				</a>
-				<a href='#markets' className='pb-4'>
-					Markets
-				</a>
+				<button onClick={() => handleNav('chart')}>Chart</button>
+				<button onClick={() => handleNav('news')}>News</button>
+				<button onClick={() => handleNav('about')}>About</button>
+				<button onClick={() => handleNav('markets')}>Markets</button>
 			</div>
 
 			{/* <Chart history={history} /> */}

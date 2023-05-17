@@ -8,6 +8,10 @@ import SignOutButton from './SignOutButton'
 import SignInButton from './SignInButton'
 import { testCoins } from '@/testdata/coins'
 import { HiOutlineStar, HiOutlineShoppingCart } from 'react-icons/hi'
+import logo from '@/public/cryptocurrency.png'
+import Image from 'next/image'
+import style from './Nav.module.css'
+const { spins } = style
 
 const NavContainer = async () => {
 	const [session, global] = await Promise.all([
@@ -59,7 +63,12 @@ const NavContainer = async () => {
 			</div>
 			<div className='flex pt-4 justify-between px-4 md:px-6'>
 				<div className='basis-4/6 flex items-center justify-start gap-8 text-base'>
-					<span className='text-2xl font-medium'>Tickr</span>
+					<div
+						className={`text-3xl font-semibold flex items-center gap-2 ${spins}`}
+					>
+						<Image src={logo} alt='logo' className='h-12 w-12' />
+						Tickr
+					</div>
 					<Link className='font-medium hover:text-blue-500' href='/'>
 						Cryptocurrencies
 					</Link>
@@ -86,7 +95,7 @@ const NavContainer = async () => {
 							Profile
 						</Link>
 						<Link
-							href={'/testnet'}
+							href={'/exchange'}
 							className='text-slate-500 flex items-center gap-1 p-2 rounded-md hover:bg-slate-100 profile-button'
 						>
 							<HiOutlineShoppingCart className='h-5 w-5' />

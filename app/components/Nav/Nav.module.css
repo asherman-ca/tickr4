@@ -1,0 +1,7 @@
+.spins img {
+	transition: transform 0.65s cubic-bezier(0.8, -0.8, 0.2, 1.8) 0s;
+}
+
+.spins:hover img {
+	transform: rotate(360deg);
+}

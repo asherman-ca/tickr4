@@ -26,3 +26,29 @@ html {
 	border-left: 15px solid transparent;
 	border-right: 15px solid transparent;
 }
+
+.slide-in {
+	animation: fadeIn 0.2s ease-in;
+}
+
+.fly-in {
+	animation: flyin 0.3s ease;
+}
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes flyin {
+	0% {
+		transform: translatex(100%);
+	}
+	100% {
+		transform: translateX(0);
+	}
+}

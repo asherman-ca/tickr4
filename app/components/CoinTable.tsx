@@ -38,12 +38,12 @@ const CoinTable = ({
 			}
 			return coin
 		})
-	}, [coins, likes, session])
+	}, [coins, likes])
 
 	if (loading && session) return <Spinner />
 
 	return (
-		<div>
+		<div className='flex-1'>
 			{displayCoins?.slice(0, 10).map((coin) => (
 				<CoinItem key={coin.id} coin={coin} />
 			))}

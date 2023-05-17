@@ -2,7 +2,6 @@ import { getCoin, getCoinHistory, getCoins, getNews } from '@/app/util/requests'
 import { getServerSession } from 'next-auth'
 import Content from './Content'
 import { authOptions } from '@/app/api/auth/[...nextauth]/route'
-
 import bitcoin from '@/testdata/bitcoin.json'
 import { coinHistory } from '@/testdata/coinHistory'
 import everything from '@/testdata/everything.json'

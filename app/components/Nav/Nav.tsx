@@ -11,15 +11,17 @@ import { HiOutlineStar, HiOutlineShoppingCart } from 'react-icons/hi'
 import logo from '@/public/cryptocurrency.png'
 import Image from 'next/image'
 import style from './Nav.module.css'
+import { coinType } from '@/app/util/types'
 const { spins } = style
 
+export const revalidate = 300
 const NavContainer = async () => {
 	const [session, global] = await Promise.all([
 		getServerSession(authOptions),
 		getGlobal(),
 	])
 
-	const coins = testCoins
+	const coins = testCoins as coinType[]
 
 	return (
 		<nav className='flex bg-white pt-2 pb-4 box-shadow-grey flex-col relative border-b border-gray-200'>
@@ -66,7 +68,7 @@ const NavContainer = async () => {
 					<div
 						className={`text-3xl font-semibold flex items-center gap-2 ${spins}`}
 					>
-						<Image src={logo} alt='logo' className='h-12 w-12' />
+						<Image src={logo} alt='logo' className='h-8 w-8' />
 						Tickr
 					</div>
 					<Link className='font-medium hover:text-blue-500' href='/'>
@@ -103,7 +105,6 @@ const NavContainer = async () => {
 						</Link>
 					</div>
 					<NavInput coins={coins} />
-					{/* <div>NavInput</div> */}
 				</div>
 				<div className='sm:hidden flex justify-end text-right items-center'>
 					<div>Dropdown</div>

@@ -1,4 +1,4 @@
-export const coins = [
+export const testCoins = [
 	{
 		id: 'bitcoin',
 		symbol: 'btc',

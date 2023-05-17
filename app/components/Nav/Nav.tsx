@@ -3,15 +3,19 @@ import { authOptions } from '@/app/api/auth/[...nextauth]/route'
 import { getGlobal, getCoins } from '@/app/util/requests'
 import { numParseNoDecimal, moneyParse, numParse } from '@/app/util/formaters'
 import Link from 'next/link'
-import SubNav from './SubNav'
+import NavInput from './NavInput'
 import SignOutButton from './SignOutButton'
 import SignInButton from './SignInButton'
+import { testCoins } from '@/testdata/coins'
+import { HiOutlineStar, HiOutlineShoppingCart } from 'react-icons/hi'
 
 const NavContainer = async () => {
 	const [session, global] = await Promise.all([
 		getServerSession(authOptions),
 		getGlobal(),
 	])
+
+	const coins = testCoins
 
 	return (
 		<nav className='flex bg-white pt-2 pb-4 box-shadow-grey flex-col relative border-b border-gray-200'>
@@ -54,7 +58,7 @@ const NavContainer = async () => {
 				</div>
 			</div>
 			<div className='flex pt-4 justify-between px-4 md:px-6'>
-				<div className='basis-4/6 flex items-center justify-start gap-8'>
+				<div className='basis-4/6 flex items-center justify-start gap-8 text-base'>
 					<span className='text-2xl font-medium'>Tickr</span>
 					<Link className='font-medium hover:text-blue-500' href='/'>
 						Cryptocurrencies
@@ -73,24 +77,24 @@ const NavContainer = async () => {
 					</Link>
 				</div>
 				<div className='hidden sm:flex basis-2/6 justify-end items-center gap-4'>
-					<div className='flex'>
+					<div className='flex text-sm'>
 						<Link
 							href={'/profile'}
 							className='text-slate-500 flex items-center gap-1 p-2 rounded-md hover:bg-slate-100 profile-button'
 						>
-							{/* <StarIcon color={'gray'} height={18} width={18} /> */}
+							<HiOutlineStar className='h-5 w-5' />
 							Profile
 						</Link>
 						<Link
 							href={'/testnet'}
 							className='text-slate-500 flex items-center gap-1 p-2 rounded-md hover:bg-slate-100 profile-button'
 						>
-							{/* <ChartPieIcon color={'gray'} height={18} width={18} /> */}
+							<HiOutlineShoppingCart className='h-5 w-5' />
 							Exchange
 						</Link>
 					</div>
-					{/* <NavInput coins={data} /> */}
-					<div>NavInput</div>
+					<NavInput coins={coins} />
+					{/* <div>NavInput</div> */}
 				</div>
 				<div className='sm:hidden flex justify-end text-right items-center'>
 					<div>Dropdown</div>

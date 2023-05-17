@@ -6,6 +6,8 @@ import PostForm from './PostForm'
 import { getPosts } from '@/app/util/requests'
 import TimeAgo from 'react-timeago'
 import { motion } from 'framer-motion'
+import Spinner from '@/app/components/Spinner'
+import netscape from '@/public/netscape.gif'
 
 const RightPanel = ({ coin }: { coin: coinView }) => {
 	const [posts, setPosts] = useState<any[]>([])
@@ -46,8 +48,16 @@ const RightPanel = ({ coin }: { coin: coinView }) => {
 					</button>
 				</div>
 			</div>
-			<div className='px-6 overflow-auto flex flex-col pt-2 scrollbar-hide'>
-				{loading && '...loading'}
+			<div className='px-6 overflow-auto flex flex-1 flex-col pt-2 scrollbar-hide'>
+				{loading && (
+					<div className='flex justify-center items-center flex-1'>
+						<Image
+							src={netscape}
+							alt='loading'
+							className='h-24 w-24 rounded-full'
+						/>
+					</div>
+				)}
 				{!loading &&
 					posts.map((post, idx) => (
 						<motion.div

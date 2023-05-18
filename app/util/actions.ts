@@ -71,6 +71,8 @@ export const displayCoinsMemo = (
 					return a.total_volume - b.total_volume
 				})
 			}
+		} else {
+			return coins
 		}
 	}, [coins, loading, sortParam])
 }

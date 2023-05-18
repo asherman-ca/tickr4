@@ -87,7 +87,7 @@ const CoinTable = ({
 
 	return (
 		<div className='flex-1 px-6'>
-			<table className='w-full'>
+			<table className='w-full text-sm'>
 				<thead>
 					<tr className='border-gray-200 border-b'>
 						<th className='py-2'></th>
@@ -172,7 +172,11 @@ const CoinTable = ({
 									className='hover:bg-blue-50 border-b border-gray-200'
 								>
 									<td className='pl-2'>
-										{coin.liked ? <AiFillStar /> : <AiOutlineStar />}
+										{coin.liked ? (
+											<AiFillStar className='fill-orange-300 text-orange-300' />
+										) : (
+											<AiOutlineStar />
+										)}
 									</td>
 									<td className='text-left py-6'>{coin.market_cap_rank}</td>
 									<td className='w-[250px]'>
@@ -198,16 +202,23 @@ const CoinTable = ({
 										{moneyParse(coin.current_price)}
 									</td>
 									<td
-										className={`text-right min-w-[10%] hidden md:table-cell ${
+										className={`min-w-[10%] hidden md:table-cell ${
 											coin.price_change_percentage_1h_in_currency > 0
 												? 'text-green-500'
 												: 'text-red-500'
 										}`}
 									>
-										{numParseTwoDecimal(
-											coin.price_change_percentage_1h_in_currency
-										)}
-										%
+										<div className='flex justify-end items-center gap-1'>
+											{coin.price_change_percentage_1h_in_currency > 0 ? (
+												<VscTriangleUp />
+											) : (
+												<VscTriangleDown />
+											)}
+											{numParseTwoDecimal(
+												coin.price_change_percentage_1h_in_currency
+											)}
+											%
+										</div>
 									</td>
 									<td
 										className={`text-right min-w-[10%] hidden sm:table-cell ${
@@ -216,10 +227,17 @@ const CoinTable = ({
 												: 'text-red-500'
 										}`}
 									>
-										{numParseTwoDecimal(
-											coin.price_change_percentage_24h_in_currency
-										)}
-										%
+										<div className='flex justify-end items-center gap-1'>
+											{coin.price_change_percentage_24h_in_currency > 0 ? (
+												<VscTriangleUp />
+											) : (
+												<VscTriangleDown />
+											)}
+											{numParseTwoDecimal(
+												coin.price_change_percentage_24h_in_currency
+											)}
+											%
+										</div>
 									</td>
 									<td
 										className={`text-right min-w-[10%] hidden md:table-cell ${
@@ -228,10 +246,17 @@ const CoinTable = ({
 												: 'text-red-500'
 										}`}
 									>
-										{numParseTwoDecimal(
-											coin.price_change_percentage_7d_in_currency
-										)}
-										%
+										<div className='flex justify-end items-center gap-1'>
+											{coin.price_change_percentage_7d_in_currency > 0 ? (
+												<VscTriangleUp />
+											) : (
+												<VscTriangleDown />
+											)}
+											{numParseTwoDecimal(
+												coin.price_change_percentage_7d_in_currency
+											)}
+											%
+										</div>
 									</td>
 									<td className='text-right min-w-[10%] hidden md:table-cell'>
 										{moneyParse(coin.market_cap)}

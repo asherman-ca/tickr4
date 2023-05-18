@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { HiClock, HiFire, HiCalendar } from 'react-icons/hi'
-
+import { VscTriangleDown, VscTriangleUp } from 'react-icons/vsc'
 import { coinType } from '@/app/util/types'
 import { numParseTwoDecimal } from '@/app/util/formaters'
 
@@ -28,7 +28,7 @@ const HighlightTable = ({ coins, duration, title }: Props) => {
 	}, [])
 
 	return (
-		<div className='basis-full flex flex-col gap-4 bg-white shadow-sm rounded-md p-4 overflow-hidden'>
+		<div className='basis-full flex flex-col gap-4 bg-white shadow-sm rounded-md p-4 overflow-hidden text-sm'>
 			<div className='flex gap-2 items-center'>
 				{duration === 'price_change_percentage_1h_in_currency' && (
 					<HiFire className='h-6 w-6 fill-red-500' />
@@ -48,22 +48,29 @@ const HighlightTable = ({ coins, duration, title }: Props) => {
 					className='flex justify-between fly-in'
 				>
 					<div className='flex gap-3 items-center'>
-						<span className='text-slate-500'>{index + (page - 1) * 3 + 1}</span>
+						<span className='text-slate-500 w-3'>
+							{index + (page - 1) * 3 + 1}
+						</span>
 						<Image
 							height={24}
 							width={24}
 							src={coin.image}
 							alt={coin.name}
-							className='h-[24px] w-[24px]'
+							className='h-[24px] w-[24px] rounded-full'
 						/>
 						{coin.name}{' '}
 						<span className='text-slate-500'>{coin.symbol.toUpperCase()}</span>
 					</div>
 					<div
-						className={`${
+						className={`flex gap-1 items-center ${
 							coin[duration] > 0 ? 'text-green-500' : 'text-red-500'
 						}`}
 					>
+						{coin[duration] > 0 ? (
+							<VscTriangleUp className='h-3 w-3' />
+						) : (
+							<VscTriangleDown className='h-3 w-3' />
+						)}
 						{numParseTwoDecimal(coin[duration])}%
 					</div>
 				</Link>

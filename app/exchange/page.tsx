@@ -1,7 +1,7 @@
-import React from 'react'
+import Contruction from '../components/Contruction'
 
 const page = () => {
-	return <div>page</div>
+	return <Contruction />
 }
 
 export default page

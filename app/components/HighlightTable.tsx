@@ -31,13 +31,13 @@ const HighlightTable = ({ coins, duration, title }: Props) => {
 		<div className='basis-full flex flex-col gap-4 bg-white shadow-sm rounded-md p-4 overflow-hidden'>
 			<div className='flex gap-2 items-center'>
 				{duration === 'price_change_percentage_1h_in_currency' && (
-					<HiFire className='h-8 w-8' />
+					<HiFire className='h-6 w-6 fill-red-500' />
 				)}
 				{duration === 'price_change_percentage_24h_in_currency' && (
-					<HiClock className='h-8 w-8' />
+					<HiClock className='h-6 w-6' />
 				)}
 				{duration === 'price_change_percentage_7d_in_currency' && (
-					<HiCalendar className='h-8 w-8' />
+					<HiCalendar className='h-6 w-6' />
 				)}
 				<span className='font-semibold text-base'>{title}</span>
 			</div>

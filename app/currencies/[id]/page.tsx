@@ -16,31 +16,31 @@ export async function getStaticParams() {
 }
 
 const page = async ({ params }: { params: { id: string } }) => {
-	// const [session, coin, history, news] = await Promise.all([
-	// 	getServerSession(authOptions),
-	// 	getCoin(params.id),
-	// 	getCoinHistory(params.id),
-	// 	getNews(params.id),
-	// ])
+	const [session, coin, history, news] = await Promise.all([
+		getServerSession(authOptions),
+		getCoin(params.id),
+		getCoinHistory(params.id),
+		getNews(params.id),
+	])
 
-	const session = await getServerSession(authOptions)
-	const coin = JSON.parse(JSON.stringify(bitcoin))
-	const history = coinHistory
-	const parsedNews = JSON.parse(JSON.stringify(everything))
-		.articles.slice(0, 5)
-		.sort((a: any, b: any) => {
-			return (
-				new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
-			)
-		})
-
-	// const parsedNews = JSON.parse(JSON.stringify(news))
+	// const session = await getServerSession(authOptions)
+	// const coin = JSON.parse(JSON.stringify(bitcoin))
+	// const history = coinHistory
+	// const parsedNews = JSON.parse(JSON.stringify(everything))
 	// 	.articles.slice(0, 5)
 	// 	.sort((a: any, b: any) => {
 	// 		return (
 	// 			new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
 	// 		)
 	// 	})
+
+	const parsedNews = JSON.parse(JSON.stringify(news))
+		.articles.slice(0, 5)
+		.sort((a: any, b: any) => {
+			return (
+				new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
+			)
+		})
 
 	return (
 		<Content

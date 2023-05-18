@@ -1,6 +1,5 @@
 'use client'
 import { useState, useEffect, useMemo } from 'react'
-import CoinItem from './CoinItem'
 import { coinTableType, coinType } from '../util/types'
 import { getUserLikes } from '../util/requests'
 import Spinner from './Spinner'
@@ -80,19 +79,14 @@ const CoinTable = ({
 			}
 			return coin
 		})
-	}, [coins, likes])
+	}, [likes])
 
 	const displayCoins = displayCoinsMemo(parsedCoins, loading, sortParam)
 
 	if (loading && session) return <Spinner />
 
-	console.log(displayCoins)
-
 	return (
-		<div className='flex-1'>
-			{/* {displayCoins?.slice(0, 10).map((coin) => (
-				<CoinItem key={coin.id} coin={coin} />
-			))} */}
+		<div className='flex-1 px-6'>
 			<table className='w-full'>
 				<thead>
 					<tr className='border-gray-200 border-b'>
@@ -183,7 +177,7 @@ const CoinTable = ({
 									<td className='text-left py-6'>{coin.market_cap_rank}</td>
 									<td className='w-[250px]'>
 										<Link
-											href={`/coin/${coin.id}`}
+											href={`/currencies/${coin.id}`}
 											className='font-medium flex items-center gap-2'
 										>
 											<Image

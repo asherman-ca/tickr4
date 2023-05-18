@@ -15,8 +15,8 @@ const Highlights = ({ hourTrends, dayTrends, weekTrends, globals }: Props) => {
 	const [showHighlights, setShowHighlights] = useState(true)
 
 	return (
-		<div className='flex flex-col gap-8'>
-			<div className='flex justify-between px-6'>
+		<div className='flex flex-col'>
+			<div className='flex justify-between px-6 mb-8'>
 				<div className='flex flex-col gap-1'>
 					<div className='text-2xl font-bold'>
 						Today's Cryptocurrency Prices by Market Cap

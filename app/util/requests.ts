@@ -1,18 +1,33 @@
 import { coinType, coinView, globalType, coinHistoryType } from './types'
 import { cache } from 'react'
+import everything from '@/testdata/everything.json'
+import global from '@/testdata/global.js'
+import { testCoins } from '@/testdata/coins.js'
 
 // COINS
 
 export const getGlobal = cache(async (): Promise<globalType> => {
 	const response = await fetch('https://api.coingecko.com/api/v3/global')
-	return response.json()
+	// return response.json()
+
+	const json = await response.json()
+	if (json.status?.error_code && json.status.error_code === 429) {
+		return global
+	} else {
+		return json
+	}
 })
 
 export const getCoins = cache(async (): Promise<coinType[]> => {
 	const response = await fetch(
 		'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&price_change_percentage=1h,24h,7d,30d'
 	)
-	return response.json()
+	const json = await response.json()
+	if (json.status?.error_code && json.status.error_code === 429) {
+		return testCoins as coinType[]
+	} else {
+		return json
+	}
 })
 
 export const getCoin = async (coinId: string): Promise<coinView> => {
@@ -24,7 +39,7 @@ export const getCoin = async (coinId: string): Promise<coinView> => {
 
 export const getCoinHistory = async (
 	coinId: string
-): Promise<coinHistoryType[]> => {
+): Promise<{ prices: coinHistoryType[] }> => {
 	const reponse = await fetch(
 		`https://api.coingecko.com/api/v3/coins/${coinId}/market_chart?vs_currency=usd&days=360&interval=daily`
 	)
@@ -83,7 +98,11 @@ export const getNews = async (coinId: string) => {
 		}
 	)
 
-	return response.json()
+	const json = await response.json()
+	if (json.status === 'error') {
+		return everything
+	}
+	return json
 }
 
 export const getNewsHeadlines = async (coinId: string) => {

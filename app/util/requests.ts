@@ -1,4 +1,10 @@
-import { coinType, coinView, globalType, coinHistoryType } from './types'
+import {
+	coinType,
+	coinView,
+	globalType,
+	coinHistoryType,
+	exchangeType,
+} from './types'
 import { cache } from 'react'
 import everything from '@/testdata/everything.json'
 import global from '@/testdata/global.js'
@@ -155,4 +161,18 @@ export const deletePost = async (postId: string) => {
 	)
 
 	return response.json()
+}
+
+// Exchanges
+
+export const getExchanges = async (): Promise<exchangeType[]> => {
+	const res = await fetch(
+		`https://api.coingecko.com/api/v3/exchanges?per_page=60`
+	)
+	const json = await res.json()
+	if (json.error) {
+		return []
+	} else {
+		return json
+	}
 }

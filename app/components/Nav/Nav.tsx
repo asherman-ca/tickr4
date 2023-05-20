@@ -16,12 +16,13 @@ const { spins } = style
 
 export const revalidate = 300
 const NavContainer = async () => {
-	const [session, global] = await Promise.all([
+	const [session, global, coins] = await Promise.all([
 		getServerSession(authOptions),
 		getGlobal(),
+		getCoins(),
 	])
 
-	const coins = testCoins as coinType[]
+	// const coins = testCoins as coinType[]
 
 	return (
 		<nav className='flex bg-white pt-2 pb-4 box-shadow-grey flex-col relative border-b border-gray-200'>

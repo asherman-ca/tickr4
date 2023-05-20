@@ -5,21 +5,12 @@ import { getCoins, getGlobal } from './util/requests'
 import { coinType } from '@/app/util/types'
 import Highlights from './components/Highlights'
 
-import { testCoins } from '@/testdata/coins'
-
 export const revalidate = 300
 
 export default async function Home() {
 	const globals = await getGlobal()
 	const session = await getServerSession(authOptions)
 	const coins: coinType[] | [] = await getCoins()
-	// const coins: coinType[] = testCoins as any
-	// let coins: coinType[] | [] = []
-	// try {
-	// coins = await getCoins()
-	// } catch (e) {
-	// console.log(e)
-	// }
 
 	const hourTrends = [...coins]
 		.sort(
@@ -44,7 +35,7 @@ export default async function Home() {
 		.slice(0, 9)
 
 	return (
-		<div className='flex flex-col pt-6 flex-1 bg-[#FBFCFD]'>
+		<div className='flex flex-col pt-6 pb-4 flex-1 bg-[#FBFCFD]'>
 			<Highlights
 				hourTrends={hourTrends}
 				dayTrends={dayTrends}

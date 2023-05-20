@@ -162,6 +162,20 @@ export type exchangeType = {
 	error: string
 }
 
+export type derivExchangeType = {
+	name: string
+	id: string
+	open_interest_btc: number
+	trade_volume_24h_btc: number
+	number_of_perpetual_pairs: number
+	number_of_futures_pairs: number
+	image: string
+	year_established: number
+	country: string | null
+	description: string
+	url: string
+}
+
 export type accountType = {
 	coin: string
 	pnl: number

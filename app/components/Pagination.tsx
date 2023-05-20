@@ -115,20 +115,23 @@ const Pagination = ({
 					<HiChevronRight className='h-8 w-8' />
 				</button>
 			</div>
-			<div className='hidden md:flex basis-1/5 justify-end items-center'>
+			<div className='hidden md:flex basis-1/5 justify-end items-center gap-2'>
 				<div>Show rows</div>
-				<select
-					name=''
-					id=''
-					value={rowsPerPage}
-					onChange={(e) => {
-						onSelect(e.target.value)
-					}}
-				>
-					{rowsPerPageOptions.map((option) => (
-						<option key={option}>{option}</option>
-					))}
-				</select>
+				<div className='bg-gray-100 rounded-md px-2'>
+					<select
+						name=''
+						id=''
+						value={rowsPerPage}
+						onChange={(e) => {
+							onSelect(e.target.value)
+						}}
+						className='bg-gray-100 py-1'
+					>
+						{rowsPerPageOptions.map((option) => (
+							<option key={option}>{option}</option>
+						))}
+					</select>
+				</div>
 			</div>
 		</div>
 	)

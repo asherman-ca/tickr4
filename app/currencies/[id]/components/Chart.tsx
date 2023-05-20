@@ -27,9 +27,6 @@ const Chart = ({ history }: { history: coinHistoryType[] }) => {
 		price: item[1] > 1 ? item[1].toFixed(2) : item[1],
 	}))
 
-	console.log('hits')
-	console.log('history', history)
-
 	return (
 		<ResponsiveContainer
 			className='text-sm px-8'

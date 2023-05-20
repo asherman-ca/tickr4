@@ -24,7 +24,7 @@ const page = async ({ params }: { params: { id: string } }) => {
 	])
 
 	// const session = await getServerSession(authOptions)
-	// const coin = JSON.parse(JSON.stringify(bitcoin))
+	// const testCoin = JSON.parse(JSON.stringify(bitcoin))
 	// const history = coinHistory
 	// const parsedNews = JSON.parse(JSON.stringify(everything))
 	// 	.articles.slice(0, 5)

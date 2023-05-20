@@ -1,13 +1,21 @@
-import { exchangeType } from '@/app/util/types'
-import { numParseTwoDecimal } from '@/app/util/formaters'
+'use client'
+import { useState } from 'react'
+import { derivExchangeType, exchangeType } from '@/app/util/types'
+import SpotExchanges from './SpotExchanges'
+import DerivExchanges from './DerivExchanges'
+import { HiOutlineStar } from 'react-icons/hi'
 
-export const revalidate = 60000
-
-const ExchangesTable = ({ exchanges }: { exchanges: exchangeType[] }) => {
-	console.log(exchanges.filter((exchange) => exchange.name === 'Kraken'))
+const ExchangesTable = ({
+	exchanges,
+	derivExchanges,
+}: {
+	exchanges: exchangeType[]
+	derivExchanges: derivExchangeType[]
+}) => {
+	const [showDeriv, setShowDeriv] = useState(false)
 	return (
-		<div className='px-8 py-6 gap-6 flex flex-col'>
-			<div className='flex flex-col gap-2'>
+		<div className='px-8 py-6 flex flex-col'>
+			<div className='flex flex-col gap-2 mb-6'>
 				<h1 className='text-2xl font-semibold'>
 					Top Cryptocurrency Spot Exchanges
 				</h1>
@@ -16,45 +24,34 @@ const ExchangesTable = ({ exchanges }: { exchanges: exchangeType[] }) => {
 					volumes, and confidence in the legitimacy of trading volumes reported.
 				</span>
 			</div>
-			<div>
-				<table className='w-full'>
-					<thead>
-						<tr className='border-b border-gray-200'>
-							<th className='text-left py-2 font-semibold'>#</th>
-							<th className='text-left font-semibold'>Exchange</th>
-							<th className='text-left font-semibold'>Score</th>
-							<th className='text-right font-semibold'>BTC volume(24h)</th>
-							<th className='text-right font-semibold'>Location</th>
-						</tr>
-					</thead>
-					<tbody>
-						{exchanges.map((exchange) => (
-							<tr className='border-b border-gray-200' key={exchange.id}>
-								<td className='py-2'>{exchange.trust_score_rank}</td>
-								<td>
-									<a
-										href={
-											exchange.name === 'Kraken'
-												? 'https://www.kraken.com/'
-												: exchange.url
-										}
-										target='_blank'
-										rel='noopener noreferrer'
-										className='font-medium'
-									>
-										{exchange.name}
-									</a>
-								</td>
-								<td>{exchange.trust_score}</td>
-								<td className='text-right'>
-									{numParseTwoDecimal(exchange.trade_volume_24h_btc_normalized)}
-								</td>
-								<td className='text-right'>{exchange.country ?? '--'}</td>
-							</tr>
-						))}
-					</tbody>
-				</table>
+			<div className='flex gap-4 mb-2 text-sm'>
+				<button className='py-2 px-3 bg-gray-100 rounded-md flex gap-1 items-center'>
+					<HiOutlineStar className='h-4 w-4' />
+					Watchlist
+				</button>
+				<div className='border-l border-gray-200 mx-2 h-[90%]' />
+				<button
+					onClick={() => setShowDeriv(false)}
+					className={`py-2 px-3 text-gray-500 rounded-md ${
+						!showDeriv && '!text-blue-500 bg-gray-100'
+					}`}
+				>
+					Spot
+				</button>
+				<button
+					onClick={() => setShowDeriv(true)}
+					className={`py-2 px-3 text-gray-500 rounded-md ${
+						showDeriv && '!text-blue-500 bg-gray-100'
+					}`}
+				>
+					Derivatives
+				</button>
 			</div>
+			{showDeriv ? (
+				<DerivExchanges derivExchanges={derivExchanges} />
+			) : (
+				<SpotExchanges exchanges={exchanges} />
+			)}
 		</div>
 	)
 }

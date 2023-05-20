@@ -4,6 +4,7 @@ import {
 	globalType,
 	coinHistoryType,
 	exchangeType,
+	derivExchangeType,
 } from './types'
 import { cache } from 'react'
 import everything from '@/testdata/everything.json'
@@ -168,6 +169,18 @@ export const deletePost = async (postId: string) => {
 export const getExchanges = async (): Promise<exchangeType[]> => {
 	const res = await fetch(
 		`https://api.coingecko.com/api/v3/exchanges?per_page=60`
+	)
+	const json = await res.json()
+	if (json.error) {
+		return []
+	} else {
+		return json
+	}
+}
+
+export const getDerivExchanges = async (): Promise<derivExchangeType[]> => {
+	const res = await fetch(
+		`https://api.coingecko.com/api/v3/derivatives/exchanges?per_page=60`
 	)
 	const json = await res.json()
 	if (json.error) {

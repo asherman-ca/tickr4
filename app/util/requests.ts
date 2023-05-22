@@ -53,6 +53,15 @@ export const getCoinHistory = async (
 	return reponse.json()
 }
 
+// USER
+
+export const getUserProfile = async () => {
+	const response = await fetch(`${process.env.NEXT_PUBLIC_HOST_URL}/api/user`, {
+		method: 'GET',
+	})
+	return response.json()
+}
+
 export const getUserLikes = async () => {
 	const response = await fetch(
 		`${process.env.NEXT_PUBLIC_HOST_URL}/api/likes`,

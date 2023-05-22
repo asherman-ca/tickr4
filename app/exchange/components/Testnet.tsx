@@ -31,7 +31,7 @@ const Testnet = ({ coins, session }: Props) => {
 	console.log('user', user)
 
 	return (
-		<div className='py-8 flex flex-col md:flex-row px-12 gap-4 flex-1'>
+		<div className='p-6 flex flex-col md:flex-row gap-4 flex-1'>
 			{modalActive && (
 				<div
 					className='absolute top-0 left-0 w-screen h-screen z-[75] bg-black opacity-50'

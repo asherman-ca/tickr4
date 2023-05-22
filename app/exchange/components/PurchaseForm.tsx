@@ -1,11 +1,8 @@
 import { useState } from 'react'
 import Image from 'next/image'
-// import { ChevronRightIcon, BanknotesIcon } from '@heroicons/react/24/solid'
 import { HiOutlineChevronRight } from 'react-icons/hi'
 import { GiMoneyStack } from 'react-icons/gi'
-
 import { toast } from 'react-hot-toast'
-
 import { moneyParse } from '@/app/util/formaters'
 import CoinForm from './CoinForm'
 import { coinType } from '@/app/util/types'
@@ -45,9 +42,32 @@ const PurchaseForm = ({
 
 	const handleAddOrder = async (data: any) => {
 		setUser((prev: any) => {
-			return { ...prev, orders: [...prev.orders, data] }
+			return {
+				...prev,
+				orders: [{ ...data, createdAt: Date.now() }, ...prev.orders],
+			}
 		})
 		const res = await addOrder(data)
+		if (!res.error) {
+			toast.success('Order added successfully')
+			setUser((prev: any) => {
+				return {
+					...prev,
+					balance:
+						data.type === 'buy'
+							? prev.balance - data.amount
+							: prev.balance + data.amount,
+				}
+			})
+		} else {
+			toast.error(res.error)
+			setUser((prev: any) => {
+				return {
+					...prev,
+					orders: [...prev.orders.slice(1)],
+				}
+			})
+		}
 	}
 
 	const handleSubmit = (

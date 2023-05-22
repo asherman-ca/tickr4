@@ -47,6 +47,7 @@ model User {
   image         String?
   age           Int?
   bio           String?
+  balance       Float     @default(100000)
   accounts      Account[]
   sessions      Session[]
   likes         likes[]

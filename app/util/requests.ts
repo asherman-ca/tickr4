@@ -201,7 +201,7 @@ export const getDerivExchanges = async (): Promise<derivExchangeType[]> => {
 
 // Orders
 
-export const addOrder = async (data) => {
+export const addOrder = async (data: any) => {
 	const response = await fetch(
 		`${process.env.NEXT_PUBLIC_HOST_URL}/api/order`,
 		{

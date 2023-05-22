@@ -7,11 +7,9 @@ import NavInput from './NavInput'
 import SignOutButton from './SignOutButton'
 import SignInButton from './SignInButton'
 import { testCoins } from '@/testdata/coins'
-import { HiOutlineStar, HiOutlineShoppingCart } from 'react-icons/hi'
 import logo from '@/public/cryptocurrency.png'
 import Image from 'next/image'
 import style from './Nav.module.css'
-import { coinType } from '@/app/util/types'
 import LinkButton from './LinkButton'
 const { spins } = style
 

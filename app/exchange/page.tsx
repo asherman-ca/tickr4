@@ -6,12 +6,11 @@ import { redirect } from 'next/navigation'
 
 async function page() {
 	const session = await getServerSession(authOptions)
-
 	if (!session) {
 		redirect('/')
 	}
 	const coins = await getCoins()
-	coins.sort((a, b) => a.market_cap_rank - b.market_cap_rank)
+	// coins.sort((a, b) => a.market_cap_rank - b.market_cap_rank)
 
 	return <Testnet coins={coins} session={session} />
 }

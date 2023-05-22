@@ -198,3 +198,28 @@ export const getDerivExchanges = async (): Promise<derivExchangeType[]> => {
 		return json
 	}
 }
+
+// Orders
+
+export const addOrder = async (data) => {
+	const response = await fetch(
+		`${process.env.NEXT_PUBLIC_HOST_URL}/api/order`,
+		{
+			method: 'POST',
+			body: JSON.stringify(data),
+		}
+	)
+
+	return response.json()
+}
+
+export const getOrders = async () => {
+	const response = await fetch(
+		`${process.env.NEXT_PUBLIC_HOST_URL}/api/order`,
+		{
+			method: 'GET',
+		}
+	)
+
+	return response.json()
+}

@@ -13,7 +13,7 @@ type Props = {
 
 const Testnet = ({ coins, session }: Props) => {
 	const [loading, setLoading] = useState<boolean>(true)
-	const [user, setUser] = useState<any>([])
+	const [user, setUser] = useState<any>({})
 	const [modalActive, setModalActive] = useState(false)
 
 	useEffect(() => {
@@ -31,22 +31,22 @@ const Testnet = ({ coins, session }: Props) => {
 	console.log('user', user)
 
 	return (
-		<div>Testnet</div>
-		// <div className='py-8 flex flex-col md:flex-row px-12 gap-4 flex-1'>
-		// 	{modalActive && (
-		// 		<div
-		// 			className='absolute top-0 left-0 w-screen h-screen z-[75] bg-black opacity-50'
-		// 			onClick={() => setModalActive(false)}
-		// 		></div>
-		// 	)}
-		// 	<OrderList orders={user?.orders || []} />
-		// 	<PurchaseForm
-		// 		coins={coins}
-		// 		modalActive={modalActive}
-		// 		setModalActive={setModalActive}
-		// 		balance={user?.balance || 0}
-		// 	/>
-		// </div>
+		<div className='py-8 flex flex-col md:flex-row px-12 gap-4 flex-1'>
+			{modalActive && (
+				<div
+					className='absolute top-0 left-0 w-screen h-screen z-[75] bg-black opacity-50'
+					onClick={() => setModalActive(false)}
+				></div>
+			)}
+			<OrderList orders={user?.orders || []} />
+			<PurchaseForm
+				coins={coins}
+				modalActive={modalActive}
+				setModalActive={setModalActive}
+				balance={user?.balance || 0}
+				setUser={setUser}
+			/>
+		</div>
 	)
 }
 

@@ -1,5 +1,5 @@
-![Alt text](https://github.com/asherman-ca/tickr4/blob/main/public/readmedocs/coinpage.jpg)
-![Alt text](https://github.com/asherman-ca/tickr4/blob/main/public/readmedocs/homepage.jpg)
+![Alt text](https://github.com/asherman-ca/tickr4/blob/main/readmedocs/coinpage.jpg)
+![Alt text](https://github.com/asherman-ca/tickr4/blob/main/readmedocs/homepage.jpg)
 
 ## Project Resources
 

@@ -11,7 +11,7 @@ const DerivExchanges = ({
 		<table className='w-full text-sm'>
 			<thead>
 				<tr className='border-b border-gray-200'>
-					<th className='text-left py-2 font-semibold'>#</th>
+					<th className='text-left py-4 font-semibold'>#</th>
 					<th className='text-left font-semibold'>Exchange</th>
 					<th className='text-right font-semibold'>BTC open interest</th>
 					<th className='text-right font-semibold'># Futurues pairs</th>
@@ -22,7 +22,7 @@ const DerivExchanges = ({
 			<tbody>
 				{derivExchanges.map((exchange, idx) => (
 					<tr className='border-b border-gray-200' key={exchange.id}>
-						<td className='py-2'>{idx + 1}</td>
+						<td className='py-4'>{idx + 1}</td>
 						<td>
 							<a
 								href={

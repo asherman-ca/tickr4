@@ -7,7 +7,7 @@ const SpotExchanges = ({ exchanges }: { exchanges: exchangeType[] }) => {
 		<table className='w-full text-sm'>
 			<thead>
 				<tr className='border-b border-gray-200'>
-					<th className='text-left py-2 font-semibold'>#</th>
+					<th className='text-left py-4 font-semibold'>#</th>
 					<th className='text-left font-semibold'>Exchange</th>
 					<th className='text-right font-semibold'>Score</th>
 					<th className='text-right font-semibold'>BTC volume(24h)</th>
@@ -18,7 +18,7 @@ const SpotExchanges = ({ exchanges }: { exchanges: exchangeType[] }) => {
 			<tbody>
 				{exchanges.map((exchange) => (
 					<tr className='border-b border-gray-200' key={exchange.id}>
-						<td className='py-2'>{exchange.trust_score_rank}</td>
+						<td className='py-4'>{exchange.trust_score_rank}</td>
 						<td>
 							<a
 								href={

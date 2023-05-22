@@ -53,6 +53,15 @@ export const getCoinHistory = async (
 	return reponse.json()
 }
 
+// USER
+
+export const getUserProfile = async () => {
+	const response = await fetch(`${process.env.NEXT_PUBLIC_HOST_URL}/api/user`, {
+		method: 'GET',
+	})
+	return response.json()
+}
+
 export const getUserLikes = async () => {
 	const response = await fetch(
 		`${process.env.NEXT_PUBLIC_HOST_URL}/api/likes`,
@@ -188,4 +197,29 @@ export const getDerivExchanges = async (): Promise<derivExchangeType[]> => {
 	} else {
 		return json
 	}
+}
+
+// Orders
+
+export const addOrder = async (data: any) => {
+	const response = await fetch(
+		`${process.env.NEXT_PUBLIC_HOST_URL}/api/order`,
+		{
+			method: 'POST',
+			body: JSON.stringify(data),
+		}
+	)
+
+	return response.json()
+}
+
+export const getOrders = async () => {
+	const response = await fetch(
+		`${process.env.NEXT_PUBLIC_HOST_URL}/api/order`,
+		{
+			method: 'GET',
+		}
+	)
+
+	return response.json()
 }

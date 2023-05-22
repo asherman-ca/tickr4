@@ -12,6 +12,7 @@ import logo from '@/public/cryptocurrency.png'
 import Image from 'next/image'
 import style from './Nav.module.css'
 import { coinType } from '@/app/util/types'
+import LinkButton from './LinkButton'
 const { spins } = style
 
 export const revalidate = 300
@@ -90,20 +91,8 @@ const NavContainer = async () => {
 				</div>
 				<div className='hidden sm:flex basis-2/6 justify-end items-center gap-4'>
 					<div className='flex text-sm'>
-						<Link
-							href={'/profile'}
-							className='text-slate-500 flex items-center gap-1 p-2 rounded-md hover:bg-slate-100 profile-button'
-						>
-							<HiOutlineStar className='h-5 w-5' />
-							Profile
-						</Link>
-						<Link
-							href={'/exchange'}
-							className='text-slate-500 flex items-center gap-1 p-2 rounded-md hover:bg-slate-100 profile-button'
-						>
-							<HiOutlineShoppingCart className='h-5 w-5' />
-							Exchange
-						</Link>
+						<LinkButton session={session} type={'profile'} />
+						<LinkButton session={session} type={'exchange'} />
 					</div>
 					<NavInput coins={coins} />
 				</div>

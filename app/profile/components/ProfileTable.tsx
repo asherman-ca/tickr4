@@ -9,7 +9,7 @@ import PortfolioTable from './PortfolioTable'
 const ProfileTable = ({ coins }: any) => {
 	const [user, setUser] = useState<any>({})
 	const [loading, setLoading] = useState(true)
-	const [showWatchlist, setShowWatchlist] = useState(false)
+	const [showWatchlist, setShowWatchlist] = useState(true)
 	useEffect(() => {
 		const fetchUser = async () => {
 			const user = await getUserProfile()
@@ -41,7 +41,7 @@ const ProfileTable = ({ coins }: any) => {
 				</button>
 			</div>
 			{showWatchlist ? (
-				<WatchListTable coins={coins} />
+				<WatchListTable coins={coins} data={user.likes} />
 			) : (
 				<PortfolioTable accounts={pnl} />
 			)}

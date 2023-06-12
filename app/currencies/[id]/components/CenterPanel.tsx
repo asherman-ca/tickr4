@@ -10,17 +10,21 @@ type Props = {
 }
 
 const handleNav = (elementId: string) => {
+	const centerPanel = document.getElementById('centerPanel')!
 	const element = document.getElementById(elementId)!
-	element.scrollIntoView({
+	centerPanel.scrollTo({
+		top: element.offsetTop - 220,
+		left: 0,
 		behavior: 'smooth',
-		block: 'start',
-		inline: 'nearest',
 	})
 }
 
 const CenterPanel = ({ coin, news, history }: Props) => {
 	return (
-		<div className='hidden md:flex md:basis-2/3 lg:basis-1/2 flex-col gap-6 pb-4 text-base border-l border-gray-200 overflow-auto scrollbar-hide'>
+		<div
+			className='hidden md:flex md:basis-2/3 lg:basis-1/2 flex-col gap-6 pb-4 text-base border-l border-gray-200 overflow-auto scrollbar-hide'
+			id='centerPanel'
+		>
 			<div className='flex gap-4 py-6 px-10 text-base border-b border-gray-200 sticky top-0 left-0 bg-white z-10'>
 				<button onClick={() => handleNav('news')}>News</button>
 				<button onClick={() => handleNav('markets')}>Markets</button>
